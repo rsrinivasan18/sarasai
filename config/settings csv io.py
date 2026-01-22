@@ -9,30 +9,28 @@ GitHub: github.com/rsrinivasan18
 
 from pathlib import Path
 
-
 class Settings:
     """Application settings"""
-
+    
     # Author information
     AUTHOR_NAME = "Srinivasan Ramarao"
     AUTHOR_EMAIL = "rsrinivasan18@gmail.com"
-
+    
     # Project paths
     BASE_DIR = Path(__file__).parent.parent
     DATA_DIR = BASE_DIR / "data"
-
+    
     # API settings
     APP_NAME = "Sarasai"
-    APP_VERSION = "0.5.0"
-    APP_DESCRIPTION = "Where Wisdom Flows - Real-time Stock Analysis API"
-
+    APP_VERSION = "0.4.0"
+    APP_DESCRIPTION = "Where Wisdom Flows - Stock Analysis API"
+    
     # Data settings
     MOCK_DATA_FILE = DATA_DIR / "mock_stocks.csv"
-    DATA_SOURCE = "live"  # Changed from "mock" to "live"
-
-    # Alpha Vantage API
-    ALPHA_VANTAGE_API_KEY = "AI0J92EXAQ12E0RY"
-    ALPHA_VANTAGE_BASE_URL = "https://www.alphavantage.co/query"
-
+    DATA_SOURCE = "mock"  # Will change to "live" later
+    
+    # Future: API keys (when we add real data)
+    ALPHA_VANTAGE_API_KEY = None
+    
 
 settings = Settings()

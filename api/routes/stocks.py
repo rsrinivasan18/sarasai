@@ -9,6 +9,8 @@ from typing import List
 
 from core.models import StockData, StockListItem
 from core.services import stock_service
+from datetime import datetime
+
 
 router = APIRouter(prefix="/stocks", tags=["stocks"])
 
@@ -19,9 +21,29 @@ router = APIRouter(prefix="/stocks", tags=["stocks"])
 @router.get("/table", response_class=HTMLResponse)
 def stocks_table():
     """
-    Display all stocks in a nice HTML table
+    Display all stocks in a nice HTML table with LIVE data
     """
-    stocks = stock_service.list_stocks()
+    # Get list of symbols from CSV
+    symbols = stock_service.get_available_symbols()
+
+    # Fetch live data for each (this will use cache/fallback as needed)
+    stocks_data = []
+    for symbol in symbols:
+        try:
+            stock = stock_service.get_stock(symbol)
+            stocks_data.append(
+                {
+                    "symbol": stock.symbol,
+                    "name": stock.name,
+                    "price": stock.current_price,
+                    "currency": stock.currency,
+                    "exchange": stock.exchange,
+                    "source": stock.data_source,
+                }
+            )
+        except:
+            # If fails, skip this stock
+            continue
 
     # Build HTML table
     html = (
@@ -29,7 +51,7 @@ def stocks_table():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Sarasai - Stock List</title>
+        <title>Sarasai - Live Stock Data</title>
         <style>
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -42,7 +64,7 @@ def stocks_table():
                 margin-bottom: 30px;
             }
             .container {
-                max-width: 1200px;
+                max-width: 1400px;
                 margin: 0 auto;
                 background: white;
                 padding: 30px;
@@ -75,6 +97,7 @@ def stocks_table():
             .price {
                 font-weight: bold;
                 color: #667eea;
+                font-size: 16px;
             }
             .symbol {
                 font-weight: 600;
@@ -87,6 +110,22 @@ def stocks_table():
                 font-size: 11px;
                 color: #666;
             }
+            .live {
+                background: #10b981;
+                color: white;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 10px;
+                font-weight: 600;
+            }
+            .csv {
+                background: #f59e0b;
+                color: white;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 10px;
+                font-weight: 600;
+            }
             .header-title {
                 color: #333;
                 margin-bottom: 20px;
@@ -96,16 +135,24 @@ def stocks_table():
                 margin-bottom: 20px;
                 color: #666;
             }
+            .refresh-note {
+                text-align: center;
+                margin-top: 20px;
+                color: #999;
+                font-size: 12px;
+            }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1 class="header-title">🦢 Sarasai - Stock Portfolio</h1>
+            <h1 class="header-title">🦢 Sarasai - Live Stock Portfolio</h1>
             <div class="stats">
                 <strong>Total Stocks:</strong> """
-        + str(len(stocks))
+        + str(len(stocks_data))
         + """ | 
-                <strong>Data Source:</strong> Mock CSV
+                <strong>Last Updated:</strong> """
+        + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        + """
             </div>
             <table>
                 <thead>
@@ -115,26 +162,34 @@ def stocks_table():
                         <th>Price</th>
                         <th>Currency</th>
                         <th>Exchange</th>
+                        <th>Source</th>
                     </tr>
                 </thead>
                 <tbody>
     """
     )
 
-    for stock in stocks:
+    for stock in stocks_data:
+        source_class = "live" if "live" in stock["source"].lower() else "csv"
+        source_label = "LIVE" if "live" in stock["source"].lower() else "CSV"
+
         html += f"""
                     <tr>
-                        <td class="symbol">{stock.symbol}</td>
-                        <td>{stock.name}</td>
-                        <td class="price">{stock.price:,.2f}</td>
-                        <td>{stock.currency}</td>
-                        <td><span class="exchange">{stock.exchange}</span></td>
+                        <td class="symbol">{stock["symbol"]}</td>
+                        <td>{stock["name"]}</td>
+                        <td class="price">{stock["price"]:,.2f}</td>
+                        <td>{stock["currency"]}</td>
+                        <td><span class="exchange">{stock["exchange"]}</span></td>
+                        <td><span class="{source_class}">{source_label}</span></td>
                     </tr>
         """
 
     html += """
                 </tbody>
             </table>
+            <div class="refresh-note">
+                💡 Refresh page to update prices. Live data from Alpha Vantage API.
+            </div>
         </div>
     </body>
     </html>
