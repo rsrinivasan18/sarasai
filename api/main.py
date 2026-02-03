@@ -5,7 +5,7 @@ Author: Srinivasan Ramarao <rsrinivasan18@gmail.com>
 
 from fastapi import FastAPI
 
-from api.routes import stocks
+from api.routes import stocks, portfolio
 from core.models import RootResponse, HealthResponse
 from core.services import stock_service
 from config.settings import settings
@@ -25,6 +25,7 @@ app = FastAPI(
 
 # Include routers
 app.include_router(stocks.router)
+app.include_router(portfolio.router)
 
 
 @app.get("/", response_model=RootResponse)
