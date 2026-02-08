@@ -1,0 +1,115 @@
+# Sarasai Expert Advisor Configuration
+# Expert sources and weighting for consensus recommendations
+
+# Expert analyst categories and their weights
+expert_weights:
+  fundamental_analyst: 1.0
+  technical_analyst: 0.8
+  quantitative_analyst: 1.2
+  market_strategist: 0.9
+  sector_specialist: 1.1
+
+# Track record decay settings
+track_record_config:
+  decay_rate: 0.95  # How much to decay old performance
+  min_recommendations: 10  # Minimum recommendations for credible track record
+  lookback_months: 24  # How far back to look for track record
+
+# Consensus calculation settings
+consensus_config:
+  confidence_threshold: 70.0  # Minimum confidence for strong recommendations
+  agreement_threshold: 60.0   # Minimum agreement for high confidence
+  recency_weight: 1.2        # Weight for more recent recommendations
+  
+# Expert bias adjustments
+bias_adjustments:
+  conservative: 0.9   # Slightly reduce bullish recommendations
+  aggressive: 1.1     # Slightly increase bullish recommendations
+  growth_oriented: 1.05
+  value_oriented: 0.95
+  momentum: 1.0
+  contrarian: 0.9
+
+# Time horizon weights
+time_horizon_weights:
+  short: 0.8    # 3 months or less
+  medium: 1.0   # 3-12 months
+  long: 1.1     # 1+ years
+
+# Expert credibility sources
+credibility_sources:
+  institutional_analysts:
+    weight: 1.0
+    examples: ["Goldman Sachs", "Morgan Stanley", "JP Morgan"]
+  
+  independent_research:
+    weight: 0.9
+    examples: ["Morningstar", "Zacks", "Value Line"]
+  
+  celebrity_investors:
+    weight: 1.2
+    examples: ["Warren Buffett", "Charlie Munger", "Ray Dalio"]
+  
+  sector_specialists:
+    weight: 1.1
+    examples: ["Cathie Wood", "Mary Meeker", "Dan Ives"]
+  
+  quantitative_funds:
+    weight: 1.3
+    examples: ["Renaissance Technologies", "Two Sigma", "AQR"]
+
+# Market-specific expert preferences
+market_experts:
+  SGX:
+    preferred_experts: ["DBS Research", "UOB Research", "OCBC Research"]
+    local_weight_boost: 1.2
+  
+  NASDAQ:
+    preferred_experts: ["ARK Research", "Wedbush", "Piper Sandler"]
+    tech_focus_boost: 1.1
+  
+  NYSE:
+    preferred_experts: ["Berkshire Hathaway", "Bridgewater", "BlackRock"]
+    large_cap_boost: 1.1
+  
+  NSE:
+    preferred_experts: ["Kotak Securities", "HDFC Securities", "ICICI Direct"]
+    local_weight_boost: 1.3
+
+# Sector expertise mapping
+sector_experts:
+  Technology:
+    specialists: ["Cathie Wood", "Mary Meeker", "Dan Ives"]
+    weight_multiplier: 1.2
+  
+  Financials:
+    specialists: ["Warren Buffett", "Jamie Dimon", "Brian Moynihan"]
+    weight_multiplier: 1.1
+  
+  Healthcare:
+    specialists: ["Peter Lynch", "Baillie Gifford", "T. Rowe Price"]
+    weight_multiplier: 1.0
+  
+  Energy:
+    specialists: ["Carl Icahn", "Daniel Yergin", "Energy analysts"]
+    weight_multiplier: 0.9
+  
+  Consumer:
+    specialists: ["Warren Buffett", "Peter Lynch", "Consumer analysts"]
+    weight_multiplier: 1.0
+
+# Recommendation aggregation rules
+aggregation_rules:
+  minimum_experts: 2  # Minimum experts needed for consensus
+  outlier_threshold: 2.0  # Standard deviations to consider outlier
+  consensus_types:
+    - "strong_consensus"    # 80%+ agreement
+    - "moderate_consensus"  # 60-79% agreement  
+    - "weak_consensus"      # 40-59% agreement
+    - "no_consensus"        # <40% agreement
+
+# Data freshness requirements
+freshness_requirements:
+  maximum_age_days: 30    # Ignore recommendations older than this
+  preferred_age_days: 7   # Prefer recommendations newer than this
+  staleness_penalty: 0.1  # Reduce weight by this much per day of staleness

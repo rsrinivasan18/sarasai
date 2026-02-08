@@ -1,0 +1,34 @@
+# Sarasai Application Configuration
+# Main configuration file for the Sarasai platform
+
+api:
+  base_url: "http://localhost:8000"
+  timeout: 30000
+  retry_attempts: 3
+
+external_apis:
+  alpha_vantage:
+    base_url: "https://www.alphavantage.co/query"
+    rate_limit: 5  # requests per minute
+    timeout: 10000
+  yahoo_finance:
+    base_url: "https://query1.finance.yahoo.com/v8/finance/chart/"
+    timeout: 5000
+    
+frontend:
+  auto_refresh: true
+  refresh_interval: 5000
+  default_theme: "light"
+  chart_update_interval: 1000
+  max_search_results: 10
+
+security:
+  algorithm: "HS256"
+  token_expiry_days: 7
+  password_min_length: 6
+  session_timeout_minutes: 120
+
+performance:
+  cache_ttl_seconds: 300
+  max_portfolio_positions: 100
+  data_fetch_batch_size: 50

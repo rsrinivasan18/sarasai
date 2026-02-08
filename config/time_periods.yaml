@@ -1,0 +1,58 @@
+# Sarasai Time Periods Configuration
+# Chart periods, timezone settings, and time-related configurations
+
+chart_periods:
+  "1D": 
+    days: 1
+    data_points: 24
+    interval: "hour"
+    label: "1 Day"
+    
+  "1W":
+    days: 7
+    data_points: 7
+    interval: "day"
+    label: "1 Week"
+    
+  "1M":
+    days: 30
+    data_points: 30
+    interval: "day"
+    label: "1 Month"
+    
+  "3M":
+    days: 90
+    data_points: 90
+    interval: "day"
+    label: "3 Months"
+    
+  "1Y":
+    days: 365
+    data_points: 365
+    interval: "day"
+    label: "1 Year"
+    
+  "ALL":
+    days: -1  # All available data
+    data_points: -1
+    interval: "auto"
+    label: "All Time"
+
+timezone:
+  default: "Asia/Singapore"
+  market_primary: "Asia/Singapore"
+  market_secondary: "America/New_York"
+  display_format: "SGT"
+  
+date_formats:
+  short: "DD/MM/YYYY"
+  long: "DD MMM YYYY, HH:mm SGT"
+  time_only: "HH:mm SGT"
+  chart_tooltip: "MMM DD, YYYY HH:mm"
+
+refresh_intervals:
+  real_time_seconds: 1
+  standard_seconds: 5  
+  slow_seconds: 60
+  chart_update_seconds: 1
+  portfolio_sync_seconds: 30

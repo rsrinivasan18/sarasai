@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarasai - Professional Investment Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="/frontend/professional_styles.css">
+</head>
+<body>
+    <!-- App Shell -->
+    <div id="app" class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-chart-network"></i>
+                    <span class="logo-text">Sarasai</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">Trading</span>
+                    <ul class="nav-menu">
+                        <li class="nav-item active" data-route="dashboard">
+                            <a href="#dashboard" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <span class="nav-text">Dashboard</span>
+                                <span class="nav-badge">Live</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="portfolio">
+                            <a href="#portfolio" class="nav-link">
+                                <i class="nav-icon fas fa-briefcase"></i>
+                                <span class="nav-text">Portfolio</span>
+                                <span class="nav-count" id="holdings-count">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="watchlist">
+                            <a href="#watchlist" class="nav-link">
+                                <i class="nav-icon fas fa-eye"></i>
+                                <span class="nav-text">Watchlist</span>
+                                <span class="nav-count" id="watchlist-count">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="orders">
+                            <a href="#orders" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <span class="nav-text">Orders</span>
+                                <span class="nav-badge pending" id="pending-orders">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Research</span>
+                    <ul class="nav-menu">
+                        <li class="nav-item" data-route="discover">
+                            <a href="#discover" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <span class="nav-text">Discover</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="screener">
+                            <a href="#screener" class="nav-link">
+                                <i class="nav-icon fas fa-filter"></i>
+                                <span class="nav-text">Stock Screener</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="market">
+                            <a href="#market" class="nav-link">
+                                <i class="nav-icon fas fa-globe"></i>
+                                <span class="nav-text">Market News</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Analysis</span>
+                    <ul class="nav-menu">
+                        <li class="nav-item" data-route="performance">
+                            <a href="#performance" class="nav-link">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <span class="nav-text">Performance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="risk">
+                            <a href="#risk" class="nav-link">
+                                <i class="nav-icon fas fa-shield-alt"></i>
+                                <span class="nav-text">Risk Analysis</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="reports">
+                            <a href="#reports" class="nav-link">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <span class="nav-text">Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Intelligence</span>
+                    <ul class="nav-menu">
+                        <li class="nav-item" data-route="portfolio-intelligence">
+                            <a href="#portfolio-intelligence" class="nav-link">
+                                <i class="nav-icon fas fa-brain"></i>
+                                <span class="nav-text">Portfolio AI</span>
+                                <span class="nav-badge">AI</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="news-intelligence">
+                            <a href="#news-intelligence" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <span class="nav-text">News Intelligence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="expert-advisor">
+                            <a href="#expert-advisor" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <span class="nav-text">Expert Advisor</span>
+                                <span class="nav-count" id="expert-count">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-route="stock-analysis">
+                            <a href="#stock-analysis" class="nav-link">
+                                <i class="nav-icon fas fa-microscope"></i>
+                                <span class="nav-text">Stock Analysis</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">John Doe</span>
+                        <span class="user-role">Premium Trader</span>
+                    </div>
+                </div>
+                <button class="settings-btn" data-route="settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <nav class="breadcrumb">
+                        <span class="breadcrumb-item" id="breadcrumb-section">Dashboard</span>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-item current" id="breadcrumb-page">Overview</span>
+                    </nav>
+                </div>
+                
+                <div class="topbar-center">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search stocks, symbols, or companies..." id="global-search">
+                        <div class="search-suggestions" id="search-suggestions"></div>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="market-status">
+                        <span class="market-status-dot open"></span>
+                        <span class="market-status-text">Market Open</span>
+                        <span class="market-time">9:30 AM EST</span>
+                    </div>
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-menu-btn">
+                            <div class="user-avatar-small">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard View -->
+                <section id="dashboard-view" class="view active">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Portfolio Dashboard</h1>
+                            <p class="view-subtitle">Real-time overview of your investments and performance</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="export-portfolio">
+                                <i class="fas fa-download"></i>
+                                Export Data
+                            </button>
+                            <button class="btn btn-primary" id="add-position">
+                                <i class="fas fa-plus"></i>
+                                Add Position
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics Cards -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3 class="metric-title">Total Portfolio Value</h3>
+                                <i class="metric-icon fas fa-wallet"></i>
+                            </div>
+                            <div class="metric-content">
+                                <span class="metric-value" id="total-portfolio-value">$0.00</span>
+                                <div class="metric-change positive" id="portfolio-change">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+$0.00 (0.00%)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3 class="metric-title">Day's Gain/Loss</h3>
+                                <i class="metric-icon fas fa-chart-line"></i>
+                            </div>
+                            <div class="metric-content">
+                                <span class="metric-value" id="day-gain-loss">+$0.00</span>
+                                <div class="metric-change positive" id="day-change-percent">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+0.00%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3 class="metric-title">Total Gain/Loss</h3>
+                                <i class="metric-icon fas fa-balance-scale"></i>
+                            </div>
+                            <div class="metric-content">
+                                <span class="metric-value" id="total-gain-loss">+$0.00</span>
+                                <div class="metric-change positive" id="total-change-percent">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>+0.00%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3 class="metric-title">Cash Balance</h3>
+                                <i class="metric-icon fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="metric-content">
+                                <span class="metric-value" id="cash-balance">$10,000.00</span>
+                                <div class="metric-change neutral">
+                                    <span>Available to trade</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Dashboard Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Portfolio Positions Table -->
+                        <div class="dashboard-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Portfolio Positions</h3>
+                                    <span class="position-count" id="position-count">0 positions</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="filter-positions">
+                                        <i class="fas fa-filter"></i>
+                                        Filter
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" id="sort-positions">
+                                        <i class="fas fa-sort"></i>
+                                        Sort
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="positions-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="symbol">
+                                                    Symbol
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable" data-sort="name">
+                                                    Company
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable numeric" data-sort="shares">
+                                                    Shares
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable numeric" data-sort="avgPrice">
+                                                    Avg Price
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable numeric" data-sort="currentPrice">
+                                                    Current Price
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable numeric" data-sort="marketValue">
+                                                    Market Value
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable numeric" data-sort="gainLoss">
+                                                    Gain/Loss
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="sortable" data-sort="recommendation">
+                                                    Recommendation
+                                                    <i class="fas fa-sort sort-icon"></i>
+                                                </th>
+                                                <th class="actions">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="positions-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Allocation Chart -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Asset Allocation</h3>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="allocation-settings">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="allocation-chart" class="chart-container"></div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Chart -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Performance Chart</h3>
+                                </div>
+                                <div class="chart-controls">
+                                    <button class="chart-period-btn active" data-period="1D">1D</button>
+                                    <button class="chart-period-btn" data-period="1W">1W</button>
+                                    <button class="chart-period-btn" data-period="1M">1M</button>
+                                    <button class="chart-period-btn" data-period="3M">3M</button>
+                                    <button class="chart-period-btn" data-period="1Y">1Y</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="performance-chart" class="chart-container"></div>
+                            </div>
+                        </div>
+
+                        <!-- Market Overview -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Market Overview</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="market-indices">
+                                    <div class="index-item">
+                                        <span class="index-name">S&P 500</span>
+                                        <span class="index-value">4,150.25</span>
+                                        <span class="index-change positive">+0.62%</span>
+                                    </div>
+                                    <div class="index-item">
+                                        <span class="index-name">NASDAQ</span>
+                                        <span class="index-value">12,850.80</span>
+                                        <span class="index-change negative">-0.34%</span>
+                                    </div>
+                                    <div class="index-item">
+                                        <span class="index-name">DOW</span>
+                                        <span class="index-value">34,195.40</span>
+                                        <span class="index-change positive">+0.38%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Movers -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Top Movers</h3>
+                                </div>
+                                <div class="card-tabs">
+                                    <button class="tab-btn active" data-tab="gainers">Gainers</button>
+                                    <button class="tab-btn" data-tab="losers">Losers</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="movers-content" class="movers-list">
+                                    <!-- Dynamic content -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Recent Activity</h3>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="view-all-activity">
+                                        View All
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="activity-feed" class="activity-feed">
+                                    <!-- Dynamic content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Intelligence Dashboard -->
+                <section id="portfolio-intelligence-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Portfolio Intelligence Dashboard</h1>
+                            <p class="view-subtitle">AI-powered portfolio analysis and recommendations</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="refresh-intelligence">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh Analysis
+                            </button>
+                            <button class="btn btn-primary" id="export-recommendations">
+                                <i class="fas fa-download"></i>
+                                Export Recommendations
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Health Score -->
+                    <div class="intelligence-grid">
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Portfolio Health Overview</h3>
+                                    <div class="health-timestamp" id="health-timestamp">Last updated: --</div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="health-metrics-grid">
+                                    <div class="health-metric">
+                                        <div class="health-score-circle" id="overall-health-score">
+                                            <div class="score-value">--</div>
+                                            <div class="score-label">Overall Health</div>
+                                        </div>
+                                    </div>
+                                    <div class="health-metric">
+                                        <div class="health-score-circle" id="diversification-score">
+                                            <div class="score-value">--</div>
+                                            <div class="score-label">Diversification</div>
+                                        </div>
+                                    </div>
+                                    <div class="health-metric">
+                                        <div class="health-score-circle" id="performance-score">
+                                            <div class="score-value">--</div>
+                                            <div class="score-label">Performance</div>
+                                        </div>
+                                    </div>
+                                    <div class="health-metric">
+                                        <div class="health-score-circle" id="risk-score">
+                                            <div class="score-value">--</div>
+                                            <div class="score-label">Risk Management</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Recommendations -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>AI Recommendations</h3>
+                                    <span class="recommendation-count" id="ai-recommendation-count">0 recommendations</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="filter-recommendations">
+                                        <i class="fas fa-filter"></i>
+                                        Filter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="ai-recommendations-list" class="recommendations-list">
+                                    <!-- AI recommendations will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Allocation Analysis -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Allocation Analysis</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="allocation-charts">
+                                    <div class="chart-section">
+                                        <h4>Sector Allocation</h4>
+                                        <div id="sector-allocation-chart" class="mini-chart"></div>
+                                    </div>
+                                    <div class="chart-section">
+                                        <h4>Market Allocation</h4>
+                                        <div id="market-allocation-chart" class="mini-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- News Intelligence Section -->
+                <section id="news-intelligence-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>News Intelligence</h1>
+                            <p class="view-subtitle">Real-time news analysis and sentiment tracking</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="refresh-news">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh News
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Portfolio News Summary -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Portfolio News Summary</h3>
+                                </div>
+                                <div class="sentiment-indicators">
+                                    <div class="sentiment-indicator" id="portfolio-sentiment">
+                                        <div class="sentiment-score">--</div>
+                                        <div class="sentiment-label">Portfolio Sentiment</div>
+                                    </div>
+                                    <div class="impact-indicator" id="news-impact">
+                                        <div class="impact-score">--</div>
+                                        <div class="impact-label">Impact Score</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="portfolio-news-summary" class="news-summary">
+                                    <!-- Portfolio news summary will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stock-Specific News -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Stock News Analysis</h3>
+                                </div>
+                                <div class="card-controls">
+                                    <select id="stock-news-selector" class="form-select">
+                                        <option value="">Select a stock</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="stock-news-analysis" class="stock-news-container">
+                                    <div class="empty-state">
+                                        <i class="fas fa-newspaper fa-2x"></i>
+                                        <p>Select a stock to view news analysis</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Market Sentiment -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Market Sentiment</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="market-sentiment-chart" class="chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Expert Advisor Integration -->
+                <section id="expert-advisor-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Expert Advisor</h1>
+                            <p class="view-subtitle">Professional analyst opinions and consensus ratings</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="refresh-experts">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Expert Consensus -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Portfolio Expert Consensus</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="portfolio-expert-consensus" class="expert-consensus-grid">
+                                    <!-- Portfolio expert consensus will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual Expert Opinions -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Individual Experts</h3>
+                                </div>
+                                <div class="card-controls">
+                                    <select id="expert-stock-selector" class="form-select">
+                                        <option value="">Select a stock</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="individual-expert-opinions" class="expert-opinions-list">
+                                    <div class="empty-state">
+                                        <i class="fas fa-user-graduate fa-2x"></i>
+                                        <p>Select a stock to view expert opinions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expert Track Records -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Expert Track Records</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="expert-track-records" class="track-records-chart">
+                                    <!-- Expert track records chart will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Enhanced Stock Analysis -->
+                <section id="stock-analysis-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Enhanced Stock Analysis</h1>
+                            <p class="view-subtitle">Comprehensive multi-dimensional stock analysis</p>
+                        </div>
+                        <div class="view-actions">
+                            <div class="stock-search-container">
+                                <input type="text" id="analysis-stock-search" placeholder="Search for a stock..." class="search-input-small">
+                                <button class="btn btn-primary" id="analyze-stock">
+                                    <i class="fas fa-search"></i>
+                                    Analyze
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid" id="stock-analysis-content">
+                        <!-- Stock Overview -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3 id="analyzed-stock-name">Stock Overview</h3>
+                                    <div class="stock-price" id="analyzed-stock-price">--</div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="stock-metrics-grid">
+                                    <div class="metric-item">
+                                        <span class="metric-label">Market</span>
+                                        <span class="metric-value" id="stock-market">--</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">Sector</span>
+                                        <span class="metric-value" id="stock-sector">--</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">Market Cap</span>
+                                        <span class="metric-value" id="stock-market-cap">--</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">Currency</span>
+                                        <span class="metric-value" id="stock-currency">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Analysis -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Technical Indicators</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="technical-indicators">
+                                    <div class="indicator-row">
+                                        <span class="indicator-name">RSI</span>
+                                        <div class="indicator-bar">
+                                            <div class="indicator-progress" id="rsi-bar"></div>
+                                        </div>
+                                        <span class="indicator-value" id="rsi-value">--</span>
+                                    </div>
+                                    <div class="indicator-row">
+                                        <span class="indicator-name">Price Momentum</span>
+                                        <div class="indicator-bar">
+                                            <div class="indicator-progress" id="momentum-bar"></div>
+                                        </div>
+                                        <span class="indicator-value" id="momentum-value">--</span>
+                                    </div>
+                                    <div class="indicator-row">
+                                        <span class="indicator-name">Volatility</span>
+                                        <div class="indicator-bar">
+                                            <div class="indicator-progress" id="volatility-bar"></div>
+                                        </div>
+                                        <span class="indicator-value" id="volatility-value">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fundamental Analysis -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Fundamental Scores</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="fundamental-scores">
+                                    <div class="score-circle-container">
+                                        <div class="score-circle" id="value-score-circle">
+                                            <div class="score-value" id="value-score">--</div>
+                                            <div class="score-label">Value</div>
+                                        </div>
+                                    </div>
+                                    <div class="score-circle-container">
+                                        <div class="score-circle" id="growth-score-circle">
+                                            <div class="score-value" id="growth-score">--</div>
+                                            <div class="score-label">Growth</div>
+                                        </div>
+                                    </div>
+                                    <div class="score-circle-container">
+                                        <div class="score-circle" id="quality-score-circle">
+                                            <div class="score-value" id="quality-score">--</div>
+                                            <div class="score-label">Quality</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fundamental-metrics">
+                                    <div class="metric-row">
+                                        <span class="metric-name">P/E Ratio</span>
+                                        <span class="metric-value" id="pe-ratio">--</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-name">Dividend Yield</span>
+                                        <span class="metric-value" id="dividend-yield">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sentiment Analysis -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Sentiment Analysis</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="sentiment-analysis">
+                                    <div class="sentiment-gauge">
+                                        <div class="gauge-container">
+                                            <div class="gauge" id="analyst-rating-gauge">
+                                                <div class="gauge-fill"></div>
+                                                <div class="gauge-text">
+                                                    <span class="gauge-value" id="analyst-rating">--</span>
+                                                    <span class="gauge-label">Analyst Rating</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sentiment-gauge">
+                                        <div class="gauge-container">
+                                            <div class="gauge" id="news-sentiment-gauge">
+                                                <div class="gauge-fill"></div>
+                                                <div class="gauge-text">
+                                                    <span class="gauge-value" id="news-sentiment">--</span>
+                                                    <span class="gauge-label">News Sentiment</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Management View -->
+                <section id="portfolio-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Portfolio Management</h1>
+                            <p class="view-subtitle">Detailed portfolio analysis and position management</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="rebalance-portfolio">
+                                <i class="fas fa-balance-scale"></i>
+                                Rebalance
+                            </button>
+                            <button class="btn btn-primary" id="add-new-position">
+                                <i class="fas fa-plus"></i>
+                                Add Position
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Portfolio Summary -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Portfolio Summary</h3>
+                                    <div class="portfolio-timestamp" id="portfolio-timestamp">Last updated: --</div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="portfolio-metrics-grid">
+                                    <div class="portfolio-metric">
+                                        <div class="metric-icon">
+                                            <i class="fas fa-wallet"></i>
+                                        </div>
+                                        <div class="metric-info">
+                                            <div class="metric-label">Total Value</div>
+                                            <div class="metric-value" id="portfolio-total-value">$0.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-metric">
+                                        <div class="metric-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="metric-info">
+                                            <div class="metric-label">Day's Change</div>
+                                            <div class="metric-value" id="portfolio-day-change">$0.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-metric">
+                                        <div class="metric-icon">
+                                            <i class="fas fa-percentage"></i>
+                                        </div>
+                                        <div class="metric-info">
+                                            <div class="metric-label">Total Return</div>
+                                            <div class="metric-value" id="portfolio-total-return">0.00%</div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-metric">
+                                        <div class="metric-icon">
+                                            <i class="fas fa-layer-group"></i>
+                                        </div>
+                                        <div class="metric-info">
+                                            <div class="metric-label">Positions</div>
+                                            <div class="metric-value" id="portfolio-position-count">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Holdings Table -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Holdings Details</h3>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="export-holdings">
+                                        <i class="fas fa-download"></i>
+                                        Export
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" id="filter-holdings">
+                                        <i class="fas fa-filter"></i>
+                                        Filter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="holdings-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Symbol</th>
+                                                <th>Company</th>
+                                                <th>Shares</th>
+                                                <th>Avg Cost</th>
+                                                <th>Current Price</th>
+                                                <th>Market Value</th>
+                                                <th>Unrealized P&L</th>
+                                                <th>% of Portfolio</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="holdings-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Watchlist View -->
+                <section id="watchlist-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Watchlist</h1>
+                            <p class="view-subtitle">Track stocks you're interested in</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="create-watchlist">
+                                <i class="fas fa-list"></i>
+                                Create List
+                            </button>
+                            <button class="btn btn-primary" id="add-to-watchlist">
+                                <i class="fas fa-plus"></i>
+                                Add Stock
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Watchlist Summary -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>My Watchlists</h3>
+                                    <div class="watchlist-count" id="watchlist-count">0 watchlists</div>
+                                </div>
+                                <div class="card-controls">
+                                    <select id="watchlist-selector" class="form-select">
+                                        <option value="default">Default Watchlist</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="watchlist-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Symbol</th>
+                                                <th>Company</th>
+                                                <th>Price</th>
+                                                <th>Change</th>
+                                                <th>% Change</th>
+                                                <th>Volume</th>
+                                                <th>Market Cap</th>
+                                                <th>P/E Ratio</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="watchlist-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders View -->
+                <section id="orders-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Order Management</h1>
+                            <p class="view-subtitle">Track and manage your trading orders</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="order-history">
+                                <i class="fas fa-history"></i>
+                                Order History
+                            </button>
+                            <button class="btn btn-primary" id="place-new-order">
+                                <i class="fas fa-plus"></i>
+                                Place Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Order Status Summary -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Order Status Overview</h3>
+                                </div>
+                                <div class="order-filters">
+                                    <button class="filter-btn active" data-status="all">All Orders</button>
+                                    <button class="filter-btn" data-status="pending">Pending</button>
+                                    <button class="filter-btn" data-status="filled">Filled</button>
+                                    <button class="filter-btn" data-status="cancelled">Cancelled</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="orders-summary-grid">
+                                    <div class="order-summary-item">
+                                        <div class="summary-icon pending">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div class="summary-info">
+                                            <div class="summary-label">Pending Orders</div>
+                                            <div class="summary-value" id="pending-orders-count">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="order-summary-item">
+                                        <div class="summary-icon filled">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <div class="summary-info">
+                                            <div class="summary-label">Filled Today</div>
+                                            <div class="summary-value" id="filled-orders-count">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="order-summary-item">
+                                        <div class="summary-icon cancelled">
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
+                                        <div class="summary-info">
+                                            <div class="summary-label">Cancelled</div>
+                                            <div class="summary-value" id="cancelled-orders-count">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="orders-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Symbol</th>
+                                                <th>Type</th>
+                                                <th>Side</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Status</th>
+                                                <th>Time</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="orders-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stock Discovery View -->
+                <section id="discover-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Stock Discovery</h1>
+                            <p class="view-subtitle">Find new investment opportunities</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="discovery-filters">
+                                <i class="fas fa-sliders-h"></i>
+                                Advanced Filters
+                            </button>
+                            <button class="btn btn-primary" id="scan-market">
+                                <i class="fas fa-search"></i>
+                                Scan Market
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Discovery Categories -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Discovery Categories</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="discovery-categories">
+                                    <div class="category-card active" data-category="trending">
+                                        <div class="category-icon">
+                                            <i class="fas fa-fire"></i>
+                                        </div>
+                                        <div class="category-info">
+                                            <div class="category-name">Trending Stocks</div>
+                                            <div class="category-description">Most popular stocks today</div>
+                                        </div>
+                                    </div>
+                                    <div class="category-card" data-category="gainers">
+                                        <div class="category-icon">
+                                            <i class="fas fa-arrow-trend-up"></i>
+                                        </div>
+                                        <div class="category-info">
+                                            <div class="category-name">Top Gainers</div>
+                                            <div class="category-description">Best performing stocks</div>
+                                        </div>
+                                    </div>
+                                    <div class="category-card" data-category="undervalued">
+                                        <div class="category-icon">
+                                            <i class="fas fa-gem"></i>
+                                        </div>
+                                        <div class="category-info">
+                                            <div class="category-name">Undervalued</div>
+                                            <div class="category-description">Value opportunities</div>
+                                        </div>
+                                    </div>
+                                    <div class="category-card" data-category="growth">
+                                        <div class="category-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div class="category-info">
+                                            <div class="category-name">Growth Stocks</div>
+                                            <div class="category-description">High growth potential</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="discovery-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Symbol</th>
+                                                <th>Company</th>
+                                                <th>Price</th>
+                                                <th>Change</th>
+                                                <th>% Change</th>
+                                                <th>Volume</th>
+                                                <th>Score</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="discovery-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stock Screener View -->
+                <section id="screener-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Stock Screener</h1>
+                            <p class="view-subtitle">Filter stocks by custom criteria</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="save-screen">
+                                <i class="fas fa-save"></i>
+                                Save Screen
+                            </button>
+                            <button class="btn btn-primary" id="run-screen">
+                                <i class="fas fa-play"></i>
+                                Run Screen
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Screening Criteria -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Screening Criteria</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="screening-form">
+                                    <div class="criteria-group">
+                                        <label>Market Cap</label>
+                                        <div class="range-inputs">
+                                            <input type="number" placeholder="Min (M)" id="market-cap-min">
+                                            <span>to</span>
+                                            <input type="number" placeholder="Max (M)" id="market-cap-max">
+                                        </div>
+                                    </div>
+                                    <div class="criteria-group">
+                                        <label>P/E Ratio</label>
+                                        <div class="range-inputs">
+                                            <input type="number" placeholder="Min" id="pe-min" step="0.1">
+                                            <span>to</span>
+                                            <input type="number" placeholder="Max" id="pe-max" step="0.1">
+                                        </div>
+                                    </div>
+                                    <div class="criteria-group">
+                                        <label>Price Range</label>
+                                        <div class="range-inputs">
+                                            <input type="number" placeholder="Min $" id="price-min" step="0.01">
+                                            <span>to</span>
+                                            <input type="number" placeholder="Max $" id="price-max" step="0.01">
+                                        </div>
+                                    </div>
+                                    <div class="criteria-group">
+                                        <label>Sector</label>
+                                        <select id="sector-filter" class="form-select">
+                                            <option value="">All Sectors</option>
+                                            <option value="Technology">Technology</option>
+                                            <option value="Healthcare">Healthcare</option>
+                                            <option value="Financial">Financial</option>
+                                            <option value="Consumer">Consumer</option>
+                                            <option value="Industrial">Industrial</option>
+                                        </select>
+                                    </div>
+                                    <div class="criteria-group">
+                                        <label>Volume</label>
+                                        <input type="number" placeholder="Min volume" id="volume-min">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Screening Results -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Screening Results</h3>
+                                    <div class="results-count" id="screener-results-count">0 stocks found</div>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="export-screen-results">
+                                        <i class="fas fa-download"></i>
+                                        Export
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="screener-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Symbol</th>
+                                                <th>Company</th>
+                                                <th>Price</th>
+                                                <th>Market Cap</th>
+                                                <th>P/E Ratio</th>
+                                                <th>Volume</th>
+                                                <th>Sector</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="screener-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Market News View -->
+                <section id="market-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Market News</h1>
+                            <p class="view-subtitle">Latest market news and analysis</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="news-filters">
+                                <i class="fas fa-filter"></i>
+                                Filter News
+                            </button>
+                            <button class="btn btn-primary" id="refresh-news-feed">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- News Categories -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>News Categories</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="news-categories">
+                                    <button class="category-filter-btn active" data-category="all">All News</button>
+                                    <button class="category-filter-btn" data-category="market">Market Updates</button>
+                                    <button class="category-filter-btn" data-category="earnings">Earnings</button>
+                                    <button class="category-filter-btn" data-category="analyst">Analyst Reports</button>
+                                    <button class="category-filter-btn" data-category="portfolio">Portfolio Related</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- News Feed -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Latest News</h3>
+                                    <div class="news-timestamp" id="news-timestamp">Last updated: --</div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div id="news-feed-container" class="news-feed">
+                                    <!-- Dynamic news content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Analysis View -->
+                <section id="performance-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Performance Analysis</h1>
+                            <p class="view-subtitle">Detailed portfolio performance metrics</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="benchmark-settings">
+                                <i class="fas fa-chart-bar"></i>
+                                Benchmarks
+                            </button>
+                            <button class="btn btn-primary" id="generate-performance-report">
+                                <i class="fas fa-file-alt"></i>
+                                Generate Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Performance Metrics -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Performance Metrics</h3>
+                                </div>
+                                <div class="time-period-selector">
+                                    <button class="period-btn active" data-period="1M">1M</button>
+                                    <button class="period-btn" data-period="3M">3M</button>
+                                    <button class="period-btn" data-period="6M">6M</button>
+                                    <button class="period-btn" data-period="1Y">1Y</button>
+                                    <button class="period-btn" data-period="YTD">YTD</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="performance-metrics-grid">
+                                    <div class="performance-metric">
+                                        <div class="metric-label">Total Return</div>
+                                        <div class="metric-value" id="total-return-metric">--</div>
+                                        <div class="metric-change" id="total-return-change">--</div>
+                                    </div>
+                                    <div class="performance-metric">
+                                        <div class="metric-label">Annualized Return</div>
+                                        <div class="metric-value" id="annualized-return-metric">--</div>
+                                        <div class="metric-change" id="annualized-return-change">--</div>
+                                    </div>
+                                    <div class="performance-metric">
+                                        <div class="metric-label">Sharpe Ratio</div>
+                                        <div class="metric-value" id="sharpe-ratio-metric">--</div>
+                                        <div class="metric-change" id="sharpe-ratio-change">--</div>
+                                    </div>
+                                    <div class="performance-metric">
+                                        <div class="metric-label">Max Drawdown</div>
+                                        <div class="metric-value" id="max-drawdown-metric">--</div>
+                                        <div class="metric-change" id="max-drawdown-change">--</div>
+                                    </div>
+                                </div>
+                                <div id="performance-chart-container" class="chart-container">
+                                    <!-- Performance chart will be rendered here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Risk Analysis View -->
+                <section id="risk-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Risk Analysis</h1>
+                            <p class="view-subtitle">Portfolio risk assessment and management</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="risk-settings">
+                                <i class="fas fa-cogs"></i>
+                                Risk Settings
+                            </button>
+                            <button class="btn btn-primary" id="generate-risk-report">
+                                <i class="fas fa-shield-alt"></i>
+                                Risk Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Risk Score Overview -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Risk Score</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="risk-score-container">
+                                    <div class="risk-score-circle" id="overall-risk-score">
+                                        <div class="score-value">--</div>
+                                        <div class="score-label">Risk Score</div>
+                                    </div>
+                                    <div class="risk-level-indicator" id="risk-level">
+                                        <span class="risk-level-text">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Risk Breakdown -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Risk Breakdown</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="risk-breakdown">
+                                    <div class="risk-item">
+                                        <span class="risk-category">Concentration Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-progress" id="concentration-risk"></div>
+                                        </div>
+                                        <span class="risk-value" id="concentration-risk-value">--</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <span class="risk-category">Volatility Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-progress" id="volatility-risk"></div>
+                                        </div>
+                                        <span class="risk-value" id="volatility-risk-value">--</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <span class="risk-category">Sector Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-progress" id="sector-risk"></div>
+                                        </div>
+                                        <span class="risk-value" id="sector-risk-value">--</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <span class="risk-category">Correlation Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-progress" id="correlation-risk"></div>
+                                        </div>
+                                        <span class="risk-value" id="correlation-risk-value">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Value at Risk -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Value at Risk (VaR)</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="var-metrics">
+                                    <div class="var-metric">
+                                        <div class="var-label">1-Day VaR (95%)</div>
+                                        <div class="var-value" id="var-1day">--</div>
+                                    </div>
+                                    <div class="var-metric">
+                                        <div class="var-label">1-Week VaR (95%)</div>
+                                        <div class="var-value" id="var-1week">--</div>
+                                    </div>
+                                    <div class="var-metric">
+                                        <div class="var-label">1-Month VaR (95%)</div>
+                                        <div class="var-value" id="var-1month">--</div>
+                                    </div>
+                                </div>
+                                <div id="var-chart-container" class="chart-container">
+                                    <!-- VaR chart will be rendered here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reports View -->
+                <section id="reports-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Reports</h1>
+                            <p class="view-subtitle">Generate and view portfolio reports</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="schedule-reports">
+                                <i class="fas fa-calendar-alt"></i>
+                                Schedule
+                            </button>
+                            <button class="btn btn-primary" id="generate-custom-report">
+                                <i class="fas fa-plus"></i>
+                                Generate Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Available Reports -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Available Reports</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="reports-list">
+                                    <div class="report-item" data-report="performance">
+                                        <div class="report-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="report-info">
+                                            <div class="report-name">Performance Report</div>
+                                            <div class="report-description">Detailed performance analysis</div>
+                                        </div>
+                                        <button class="generate-btn">Generate</button>
+                                    </div>
+                                    <div class="report-item" data-report="risk">
+                                        <div class="report-icon">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </div>
+                                        <div class="report-info">
+                                            <div class="report-name">Risk Assessment</div>
+                                            <div class="report-description">Portfolio risk analysis</div>
+                                        </div>
+                                        <button class="generate-btn">Generate</button>
+                                    </div>
+                                    <div class="report-item" data-report="tax">
+                                        <div class="report-icon">
+                                            <i class="fas fa-calculator"></i>
+                                        </div>
+                                        <div class="report-info">
+                                            <div class="report-name">Tax Report</div>
+                                            <div class="report-description">Tax implications summary</div>
+                                        </div>
+                                        <button class="generate-btn">Generate</button>
+                                    </div>
+                                    <div class="report-item" data-report="holdings">
+                                        <div class="report-icon">
+                                            <i class="fas fa-list"></i>
+                                        </div>
+                                        <div class="report-info">
+                                            <div class="report-name">Holdings Summary</div>
+                                            <div class="report-description">Current portfolio holdings</div>
+                                        </div>
+                                        <button class="generate-btn">Generate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Report History -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Report History</h3>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm" id="archive-reports">
+                                        <i class="fas fa-archive"></i>
+                                        Archive
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="reports-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Report Name</th>
+                                                <th>Type</th>
+                                                <th>Generated</th>
+                                                <th>Status</th>
+                                                <th>Size</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="reports-tbody">
+                                            <!-- Dynamic content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings View -->
+                <section id="settings-view" class="view">
+                    <div class="view-header">
+                        <div class="view-title">
+                            <h1>Settings</h1>
+                            <p class="view-subtitle">Customize your trading experience</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="export-settings">
+                                <i class="fas fa-download"></i>
+                                Export Settings
+                            </button>
+                            <button class="btn btn-primary" id="save-settings">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-grid">
+                        <!-- Account Settings -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Account Settings</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label for="user-name">Full Name</label>
+                                        <input type="text" id="user-name" value="John Doe" class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-email">Email Address</label>
+                                        <input type="email" id="user-email" value="john.doe@example.com" class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-phone">Phone Number</label>
+                                        <input type="tel" id="user-phone" value="+1 (555) 123-4567" class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-timezone">Timezone</label>
+                                        <select id="user-timezone" class="form-select">
+                                            <option value="EST">Eastern Time (EST)</option>
+                                            <option value="CST">Central Time (CST)</option>
+                                            <option value="MST">Mountain Time (MST)</option>
+                                            <option value="PST">Pacific Time (PST)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trading Preferences -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Trading Preferences</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label for="default-order-type">Default Order Type</label>
+                                        <select id="default-order-type" class="form-select">
+                                            <option value="market">Market Order</option>
+                                            <option value="limit">Limit Order</option>
+                                            <option value="stop">Stop Order</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="risk-tolerance">Risk Tolerance</label>
+                                        <select id="risk-tolerance" class="form-select">
+                                            <option value="conservative">Conservative</option>
+                                            <option value="moderate">Moderate</option>
+                                            <option value="aggressive">Aggressive</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="confirm-orders" checked>
+                                            <label for="confirm-orders">Confirm orders before execution</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="enable-notifications" checked>
+                                            <label for="enable-notifications">Enable notifications</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display Settings -->
+                        <div class="intelligence-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Display Settings</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label for="theme-selector">Theme</label>
+                                        <select id="theme-selector" class="form-select">
+                                            <option value="light">Light Theme</option>
+                                            <option value="dark">Dark Theme</option>
+                                            <option value="auto">Auto (System)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currency-format">Currency Format</label>
+                                        <select id="currency-format" class="form-select">
+                                            <option value="USD">USD ($)</option>
+                                            <option value="EUR">EUR (€)</option>
+                                            <option value="GBP">GBP (£)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="refresh-interval">Data Refresh Interval</label>
+                                        <select id="refresh-interval" class="form-select">
+                                            <option value="5">5 seconds</option>
+                                            <option value="10">10 seconds</option>
+                                            <option value="30" selected>30 seconds</option>
+                                            <option value="60">1 minute</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="show-animations" checked>
+                                            <label for="show-animations">Enable animations</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- API Settings -->
+                        <div class="intelligence-card full-width">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>API & Data Settings</h3>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label for="data-provider">Data Provider</label>
+                                        <select id="data-provider" class="form-select">
+                                            <option value="yahoo">Yahoo Finance (Free)</option>
+                                            <option value="alpha">Alpha Vantage (Premium)</option>
+                                            <option value="iex">IEX Cloud (Premium)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="enable-real-time" checked>
+                                            <label for="enable-real-time">Enable real-time data</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="cache-data">
+                                            <label for="cache-data">Cache data locally</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Modals and Overlays -->
+        <div id="add-position-modal" class="modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Position</h3>
+                    <button class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-position-form" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="position-symbol">Stock Symbol</label>
+                            <input type="text" id="position-symbol" name="symbol" placeholder="e.g., AAPL, GOOGL, MSFT" required>
+                            <small>Enter the stock symbol you want to add to your portfolio</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position-shares">Number of Shares</label>
+                            <input type="number" id="position-shares" name="shares" placeholder="100" min="1" step="1" required>
+                            <small>Number of shares you own or want to buy</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position-price">Average Price per Share</label>
+                            <input type="number" id="position-price" name="price" placeholder="150.00" min="0.01" step="0.01" required>
+                            <small>The average price you paid for each share</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position-date">Purchase Date (Optional)</label>
+                            <input type="date" id="position-date" name="date">
+                            <small>When you purchased these shares</small>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="app.closeModal()">
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="app.addPositionFromModal()">
+                                <i class="fas fa-plus"></i>
+                                Add Position
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p class="loading-text">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Notifications Container -->
+        <div id="notifications-container" class="notifications-container"></div>
+    </div>
+
+    <!-- Scripts - Load with defer to ensure DOM is ready -->
+    <script defer src="/frontend/professional_app.js"></script>
+</body>
+</html>

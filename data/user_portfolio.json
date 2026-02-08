@@ -1,0 +1,44 @@
+{
+  "positions": [
+    {
+      "id": "cdd1a483-a14b-4226-8d41-8f27c3f8c6ab",
+      "symbol": "DBS.SI",
+      "shares": 100.0,
+      "avg_price": 28.5,
+      "purchase_date": "2026-02-05",
+      "created_at": "2026-02-05T17:12:18.908431",
+      "name": "DBS Group Holdings",
+      "market": "SGX",
+      "currency": "SGD"
+    },
+    {
+      "id": "309c43ff-706a-4c15-9d8c-c8942393e5a0",
+      "symbol": "AAPL",
+      "shares": 50.0,
+      "avg_price": 180.0,
+      "purchase_date": "2026-02-05",
+      "created_at": "2026-02-05T21:49:26.471711",
+      "name": "Apple Inc.",
+      "market": "NASDAQ",
+      "currency": "USD"
+    },
+    {
+      "id": "83ad8243-4890-4500-a9a5-b482d66b0e63",
+      "symbol": "TSLA",
+      "shares": 10.0,
+      "avg_price": 200.0,
+      "purchase_date": "2026-02-08",
+      "created_at": "2026-02-08T03:19:54.864671",
+      "name": "Tesla Inc.",
+      "market": "NASDAQ",
+      "currency": "USD"
+    }
+  ],
+  "cash_balances": {
+    "SGD": 10000.0,
+    "USD": 0.0,
+    "INR": 0.0
+  },
+  "created_at": "2026-02-05T17:11:13.264065",
+  "last_updated": "2026-02-08T03:19:54.868935"
+}

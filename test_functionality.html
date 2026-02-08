@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarasai Professional - Functionality Testing</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .test-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .test-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .test-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .test-section:last-child {
+            border-bottom: none;
+        }
+
+        .test-section h2 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .test-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .test-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .test-item h3 {
+            color: #374151;
+            margin: 0 0 1rem 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .test-item p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .test-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+        }
+
+        .test-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-1px);
+        }
+
+        .test-btn.secondary {
+            background: #6b7280;
+        }
+
+        .test-btn.secondary:hover {
+            background: #4b5563;
+        }
+
+        .test-btn.success {
+            background: #10b981;
+        }
+
+        .test-btn.success:hover {
+            background: #059669;
+        }
+
+        .test-btn.warning {
+            background: #f59e0b;
+        }
+
+        .test-btn.warning:hover {
+            background: #d97706;
+        }
+
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .status.working {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checklist li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .launch-section {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .launch-section h2 {
+            color: #1f2937;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .launch-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .launch-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .launch-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .launch-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .launch-btn.primary:hover {
+            background: #5a6fd8;
+        }
+
+        .api-demo {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.875rem;
+        }
+
+        .code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🚀 Professional Trading Platform</h1>
+            <p>Full functionality testing and demonstration</p>
+        </div>
+
+        <div class="test-section">
+            <h2>🔥 All Features Now Working!</h2>
+            <div class="status working">
+                ✅ All buttons, modals, search, trading actions, and UI interactions are now fully functional!
+            </div>
+            
+            <ul class="checklist">
+                <li>Real API integration with live data</li>
+                <li>Working Add Position modal with form validation</li>
+                <li>Buy/Sell order placement with real API calls</li>
+                <li>Global search with intelligent suggestions</li>
+                <li>Interactive charts with period switching</li>
+                <li>Table sorting and real-time updates</li>
+                <li>Professional navigation and routing</li>
+                <li>Modal interactions and keyboard shortcuts</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Interactive Features to Test</h2>
+            <div class="test-grid">
+                <div class="test-item">
+                    <h3>📊 Portfolio Management</h3>
+                    <p>Add positions, buy/sell stocks, view real-time portfolio metrics</p>
+                    <button class="test-btn success" onclick="testPortfolio()">Test Portfolio Actions</button>
+                    <div class="status info">Click "Add Position" button in the app to test the modal</div>
+                </div>
+
+                <div class="test-item">
+                    <h3>🔍 Global Search</h3>
+                    <p>Search for stocks with intelligent suggestions and portfolio indicators</p>
+                    <button class="test-btn" onclick="testSearch()">Test Search</button>
+                    <div class="status info">Type "AAPL" or "Tesla" in the search bar</div>
+                </div>
+
+                <div class="test-item">
+                    <h3>📈 Interactive Charts</h3>
+                    <p>Switch between different time periods and see portfolio performance</p>
+                    <button class="test-btn warning" onclick="testCharts()">Test Charts</button>
+                    <div class="status info">Click period buttons: 1D, 1W, 1M, 3M, 1Y</div>
+                </div>
+
+                <div class="test-item">
+                    <h3>🛒 Trading Actions</h3>
+                    <p>Place buy/sell orders with real API integration</p>
+                    <button class="test-btn secondary" onclick="testTrading()">Test Trading</button>
+                    <div class="status info">Click Buy/Sell buttons in portfolio table</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🌐 Live API Endpoints</h2>
+            <p>Test the real API endpoints that power the professional platform:</p>
+            
+            <div class="api-demo">
+                <div class="code">
+                    GET /api/trading/portfolio/positions<br>
+                    GET /api/trading/portfolio/metrics<br>
+                    POST /api/trading/orders<br>
+                    GET /api/trading/market/indices<br>
+                    GET /api/trading/analytics/risk
+                </div>
+            </div>
+
+            <div class="test-grid">
+                <div class="test-item">
+                    <h3>Portfolio Data</h3>
+                    <button class="test-btn" onclick="testAPICall('/api/trading/portfolio/positions')">Test Positions API</button>
+                    <button class="test-btn" onclick="testAPICall('/api/trading/portfolio/metrics')">Test Metrics API</button>
+                </div>
+                <div class="test-item">
+                    <h3>Market Data</h3>
+                    <button class="test-btn" onclick="testAPICall('/api/trading/market/indices')">Test Indices API</button>
+                    <button class="test-btn" onclick="testAPICall('/api/trading/market/movers')">Test Movers API</button>
+                </div>
+            </div>
+            
+            <div id="api-results" class="api-demo" style="display: none; max-height: 300px; overflow-y: auto;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Key Improvements Made</h2>
+            <div class="test-grid">
+                <div class="test-item">
+                    <h3>✅ Fixed Modal Functionality</h3>
+                    <p>Add Position modal now has complete form with validation and real API integration</p>
+                </div>
+                <div class="test-item">
+                    <h3>✅ Working Trading Actions</h3>
+                    <p>Buy/Sell buttons now place real orders through the API with proper validation</p>
+                </div>
+                <div class="test-item">
+                    <h3>✅ Smart Search</h3>
+                    <p>Global search with live suggestions, portfolio indicators, and keyboard navigation</p>
+                </div>
+                <div class="test-item">
+                    <h3>✅ Interactive Charts</h3>
+                    <p>Period switching works with real API data and fallback functionality</p>
+                </div>
+                <div class="test-item">
+                    <h3>✅ Professional UI/UX</h3>
+                    <p>Click outside to close modals, escape key shortcuts, hover effects</p>
+                </div>
+                <div class="test-item">
+                    <h3>✅ Real-time Updates</h3>
+                    <p>Portfolio metrics update automatically, notifications for all actions</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="launch-section">
+            <h2>🎯 Launch Professional Platform</h2>
+            <p style="margin-bottom: 2rem; color: #6b7280;">Ready to experience the full professional trading platform with working functionality!</p>
+            
+            <div class="launch-buttons">
+                <a href="http://localhost:8000/pro" class="launch-btn primary">
+                    <i class="fas fa-rocket"></i>
+                    Launch Professional Platform
+                </a>
+                <a href="http://localhost:8000/demo" class="launch-btn">
+                    <i class="fas fa-play"></i>
+                    View Demo Page
+                </a>
+                <a href="http://localhost:8000/docs" class="launch-btn">
+                    <i class="fas fa-book"></i>
+                    API Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testPortfolio() {
+            window.open('http://localhost:8000/pro#dashboard', '_blank');
+            alert('Navigate to the Professional Platform and:\n\n1. Click "Add Position" button\n2. Fill in the form (e.g., AAPL, 100 shares, $150)\n3. Click "Add Position"\n4. Try Buy/Sell buttons in the table\n5. Watch real-time updates!');
+        }
+
+        function testSearch() {
+            window.open('http://localhost:8000/pro', '_blank');
+            alert('Navigate to the Professional Platform and:\n\n1. Click in the search bar at the top\n2. Type "AAPL" or "Tesla"\n3. See intelligent suggestions appear\n4. Click on a suggestion\n5. Try searching for stocks in your portfolio!');
+        }
+
+        function testCharts() {
+            window.open('http://localhost:8000/pro', '_blank');
+            alert('Navigate to the Professional Platform and:\n\n1. Look for the Performance Chart card\n2. Click different period buttons (1D, 1W, 1M, 3M, 1Y)\n3. Watch the chart update with new data\n4. Hover over chart points for details!');
+        }
+
+        function testTrading() {
+            window.open('http://localhost:8000/pro', '_blank');
+            alert('Navigate to the Professional Platform and:\n\n1. Find the portfolio table\n2. Click "Buy" or "Sell" buttons\n3. Enter quantity in the prompt\n4. Watch the order get placed\n5. See portfolio update automatically!');
+        }
+
+        async function testAPICall(endpoint) {
+            const resultsDiv = document.getElementById('api-results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = 'Testing API endpoint: ' + endpoint + '...';
+
+            try {
+                const response = await fetch('http://localhost:8000' + endpoint);
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <strong>✅ ${endpoint}</strong><br><br>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <strong>❌ Error testing ${endpoint}</strong><br>
+                    ${error.message}
+                `;
+            }
+        }
+
+        // Auto-test an API endpoint on page load
+        setTimeout(() => {
+            testAPICall('/api/trading/portfolio/positions');
+        }, 1000);
+    </script>
+</body>
+</html>

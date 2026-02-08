@@ -1,0 +1,79 @@
+{
+  "sample_positions": [
+    {
+      "symbol": "DBS.SI",
+      "name": "DBS Group Holdings Ltd",
+      "shares": 100,
+      "avg_price": 28.50,
+      "sector": "Financials",
+      "exchange": "SGX",
+      "currency": "SGD"
+    },
+    {
+      "symbol": "O39.SI", 
+      "name": "Oversea-Chinese Banking Corp",
+      "shares": 50,
+      "avg_price": 12.80,
+      "sector": "Financials",
+      "exchange": "SGX",
+      "currency": "SGD"
+    },
+    {
+      "symbol": "U11.SI",
+      "name": "United Overseas Bank Ltd",
+      "shares": 75,
+      "avg_price": 26.90,
+      "sector": "Financials", 
+      "exchange": "SGX",
+      "currency": "SGD"
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "shares": 50,
+      "avg_price": 150.00,
+      "sector": "Technology",
+      "exchange": "NASDAQ",
+      "currency": "USD"
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc.",
+      "shares": 25,
+      "avg_price": 120.00,
+      "sector": "Technology",
+      "exchange": "NASDAQ", 
+      "currency": "USD"
+    }
+  ],
+  "sample_watchlist": [
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc.",
+      "target_price": 200.00,
+      "alert_enabled": true
+    },
+    {
+      "symbol": "S68.SI",
+      "name": "Singapore Exchange Ltd",
+      "target_price": 9.50,
+      "alert_enabled": true
+    },
+    {
+      "symbol": "NVDA", 
+      "name": "NVIDIA Corporation",
+      "target_price": 450.00,
+      "alert_enabled": false
+    }
+  ],
+  "sample_orders": [
+    {
+      "symbol": "MSFT",
+      "side": "BUY",
+      "quantity": 10,
+      "order_type": "LIMIT",
+      "price": 380.00,
+      "status": "PENDING"
+    }
+  ]
+}

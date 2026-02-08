@@ -1,0 +1,152 @@
+# Sarasai Multi-Market Configuration
+# Support for Singapore, US, and Indian markets
+
+markets:
+  SGX:
+    name: "Singapore Exchange"
+    currency: "SGD" 
+    timezone: "Asia/Singapore"
+    market_hours:
+      open: "09:00"
+      close: "17:00"
+    trading_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    symbol_suffix: ".SI"
+    major_indices:
+      - symbol: "STI.SI"
+        name: "Straits Times Index"
+      - symbol: "MSCI.SI" 
+        name: "MSCI Singapore Index"
+    top_stocks:
+      - symbol: "DBS.SI"
+        name: "DBS Group Holdings"
+        sector: "Financials"
+      - symbol: "O39.SI"
+        name: "Oversea-Chinese Banking Corporation"
+        sector: "Financials"
+      - symbol: "U11.SI"
+        name: "United Overseas Bank"
+        sector: "Financials"
+      - symbol: "C6L.SI"
+        name: "Singapore Airlines"
+        sector: "Transportation"
+      - symbol: "S68.SI"
+        name: "Singapore Exchange"
+        sector: "Financials"
+        
+  NASDAQ:
+    name: "NASDAQ Stock Market"
+    currency: "USD"
+    timezone: "America/New_York"
+    market_hours:
+      open: "09:30"
+      close: "16:00"
+    trading_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    symbol_suffix: ""
+    major_indices:
+      - symbol: "^IXIC"
+        name: "NASDAQ Composite"
+      - symbol: "^NDX"
+        name: "NASDAQ 100"
+    top_stocks:
+      - symbol: "AAPL"
+        name: "Apple Inc."
+        sector: "Technology"
+      - symbol: "GOOGL"
+        name: "Alphabet Inc."
+        sector: "Technology"
+      - symbol: "MSFT"
+        name: "Microsoft Corporation"
+        sector: "Technology"
+      - symbol: "TSLA"
+        name: "Tesla Inc."
+        sector: "Automotive"
+      - symbol: "NVDA"
+        name: "NVIDIA Corporation"
+        sector: "Technology"
+        
+  NYSE:
+    name: "New York Stock Exchange"
+    currency: "USD"
+    timezone: "America/New_York"
+    market_hours:
+      open: "09:30"
+      close: "16:00"
+    trading_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    symbol_suffix: ""
+    major_indices:
+      - symbol: "^GSPC"
+        name: "S&P 500"
+      - symbol: "^DJI"
+        name: "Dow Jones Industrial Average"
+    top_stocks:
+      - symbol: "JPM"
+        name: "JPMorgan Chase & Co."
+        sector: "Financials"
+      - symbol: "JNJ"
+        name: "Johnson & Johnson"
+        sector: "Healthcare"
+      - symbol: "V"
+        name: "Visa Inc."
+        sector: "Financials"
+      - symbol: "PG"
+        name: "Procter & Gamble"
+        sector: "Consumer Goods"
+        
+  NSE:
+    name: "National Stock Exchange of India"
+    currency: "INR"
+    timezone: "Asia/Kolkata"
+    market_hours:
+      open: "09:15"
+      close: "15:30"
+    trading_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    symbol_suffix: ".NS"
+    major_indices:
+      - symbol: "^NSEI"
+        name: "NIFTY 50"
+      - symbol: "^NSEBANK"
+        name: "NIFTY Bank"
+    top_stocks:
+      - symbol: "RELIANCE.NS"
+        name: "Reliance Industries Limited"
+        sector: "Energy"
+      - symbol: "TCS.NS"
+        name: "Tata Consultancy Services"
+        sector: "Technology"
+      - symbol: "HDFCBANK.NS"
+        name: "HDFC Bank Limited"
+        sector: "Financials"
+      - symbol: "INFY.NS"
+        name: "Infosys Limited"
+        sector: "Technology"
+      - symbol: "ITC.NS"
+        name: "ITC Limited"
+        sector: "Consumer Goods"
+
+# Default market settings
+default_markets: ["SGX", "NASDAQ", "NYSE"]  # User's primary markets
+home_market: "SGX"  # Primary market for user
+
+# Market data sources by market
+data_sources:
+  SGX:
+    primary: "yahoo_finance"
+    fallback: "manual_csv"
+  NASDAQ:
+    primary: "yahoo_finance" 
+    fallback: "alpha_vantage"
+  NYSE:
+    primary: "yahoo_finance"
+    fallback: "alpha_vantage"
+  NSE:
+    primary: "yahoo_finance"
+    fallback: "manual_csv"
+
+# Currency conversion settings
+currency_conversion:
+  base_currency: "SGD"  # User's base currency
+  supported_pairs:
+    - "USD/SGD"
+    - "INR/SGD"
+    - "SGD/USD"
+  auto_convert: true

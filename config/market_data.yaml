@@ -1,0 +1,58 @@
+# Sarasai Market Data Configuration
+# Market indices, hours, and real-time data settings
+
+market_indices:
+  - name: "Straits Times Index"
+    symbol: "STI.SI"
+    exchange: "SGX"
+    default_value: 3200.00
+    currency: "SGD"
+    
+  - name: "S&P 500"
+    symbol: "^GSPC"
+    exchange: "NYSE" 
+    default_value: 4150.25
+    currency: "USD"
+    
+  - name: "NASDAQ Composite"
+    symbol: "^IXIC"
+    exchange: "NASDAQ"
+    default_value: 12850.80
+    currency: "USD"
+    
+  - name: "Dow Jones Industrial"
+    symbol: "^DJI"
+    exchange: "NYSE"
+    default_value: 34195.40
+    currency: "USD"
+
+market_hours:
+  singapore:
+    open: "09:00"
+    close: "17:00"
+    timezone: "Asia/Singapore"
+    currency: "SGD"
+    
+  us:
+    open: "09:30"
+    close: "16:00" 
+    timezone: "America/New_York"
+    currency: "USD"
+    
+status_messages:
+  open: "Market Open"
+  closed: "Market Closed"
+  pre_market: "Pre-Market"
+  after_market: "After Hours"
+  weekend: "Market Closed - Weekend"
+  holiday: "Market Closed - Holiday"
+
+data_sources:
+  primary: "yahoo_finance"
+  fallback: "alpha_vantage"
+  mock_data_file: "data/mock_stocks.csv"
+  
+update_intervals:
+  real_time_ms: 1000
+  standard_ms: 5000
+  fallback_ms: 60000

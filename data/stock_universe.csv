@@ -1,0 +1,37 @@
+symbol,name,sector,market,currency,market_cap_millions,pe_ratio,dividend_yield,description
+DBS.SI,DBS Group Holdings,Financials,SGX,SGD,85000,12.5,4.2,Largest bank in Southeast Asia
+O39.SI,Oversea-Chinese Banking Corporation,Financials,SGX,SGD,55000,11.8,4.8,One of Singapore's leading banks
+U11.SI,United Overseas Bank,Financials,SGX,SGD,58000,10.9,3.9,Major Singapore bank with regional presence
+C6L.SI,Singapore Airlines,Transportation,SGX,SGD,18000,15.2,0.0,National flag carrier of Singapore
+S68.SI,Singapore Exchange,Financials,SGX,SGD,8500,22.1,3.5,Stock exchange operator for Singapore
+Z74.SI,Singtel,Telecommunications,SGX,SGD,42000,14.3,5.1,Leading telecommunications group in Asia
+Y92.SI,Thai Beverage,Consumer Staples,SGX,SGD,22000,18.7,3.2,Leading beverage company in Southeast Asia
+H78.SI,Hongkong Land Holdings,Real Estate,SGX,SGD,15000,8.9,4.1,Property investment and development
+U96.SI,Semb Corp,Utilities,SGX,SGD,18000,13.2,4.6,Leading utilities and marine group
+G13.SI,Genting Singapore,Consumer Discretionary,SGX,SGD,9000,25.4,1.8,Resort and casino operator
+
+AAPL,Apple Inc.,Technology,NASDAQ,USD,2800000,28.5,0.4,Multinational technology corporation
+GOOGL,Alphabet Inc.,Technology,NASDAQ,USD,1650000,22.1,0.0,Multinational conglomerate and search engine
+MSFT,Microsoft Corporation,Technology,NASDAQ,USD,2750000,32.4,0.7,Multinational technology corporation
+TSLA,Tesla Inc.,Automotive,NASDAQ,USD,750000,45.2,0.0,Electric vehicle and clean energy company
+NVDA,NVIDIA Corporation,Technology,NASDAQ,USD,1800000,65.8,0.1,Graphics processing and AI semiconductor company
+AMZN,Amazon.com Inc.,Consumer Discretionary,NASDAQ,USD,1450000,42.3,0.0,E-commerce and cloud computing company
+META,Meta Platforms Inc.,Technology,NASDAQ,USD,850000,24.7,0.0,Social media and virtual reality company
+NFLX,Netflix Inc.,Communication Services,NASDAQ,USD,180000,28.9,0.0,Streaming entertainment service
+
+JPM,JPMorgan Chase & Co.,Financials,NYSE,USD,450000,12.8,2.9,Multinational investment bank
+JNJ,Johnson & Johnson,Healthcare,NYSE,USD,420000,15.6,2.8,Multinational pharmaceutical and consumer goods
+V,Visa Inc.,Financials,NYSE,USD,480000,31.2,0.8,Multinational financial services corporation
+PG,Procter & Gamble,Consumer Staples,NYSE,USD,350000,24.1,2.4,Multinational consumer goods corporation
+KO,The Coca-Cola Company,Consumer Staples,NYSE,USD,260000,26.3,3.1,Multinational beverage corporation
+WMT,Walmart Inc.,Consumer Staples,NYSE,USD,420000,26.8,1.6,Multinational retail corporation
+DIS,The Walt Disney Company,Communication Services,NYSE,USD,180000,38.4,0.0,Multinational entertainment conglomerate
+
+RELIANCE.NS,Reliance Industries Limited,Energy,NSE,INR,15000000,24.5,0.5,Multinational conglomerate company
+TCS.NS,Tata Consultancy Services,Technology,NSE,INR,13000000,28.7,1.8,Multinational IT services company
+HDFCBANK.NS,HDFC Bank Limited,Financials,NSE,INR,8500000,18.9,1.2,Indian banking and financial services company
+INFY.NS,Infosys Limited,Technology,NSE,INR,7200000,25.1,2.5,Multinational IT consulting corporation
+ITC.NS,ITC Limited,Consumer Goods,NSE,INR,2800000,22.4,4.1,Multinational conglomerate company
+HINDUNILVR.NS,Hindustan Unilever Limited,Consumer Staples,NSE,INR,5400000,58.2,1.4,Consumer goods company
+ICICIBANK.NS,ICICI Bank Limited,Financials,NSE,INR,6200000,15.8,0.8,Indian multinational bank
+BHARTIARTL.NS,Bharti Airtel Limited,Telecommunications,NSE,INR,4100000,32.1,0.7,Indian telecommunications company

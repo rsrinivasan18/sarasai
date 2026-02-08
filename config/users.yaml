@@ -1,0 +1,54 @@
+# Sarasai User Configuration
+# Default user profiles and user-related settings
+
+default_user:
+  name: "Srinivasan Ramarao"
+  email: "rsrinivasan18@gmail.com"
+  role: "Premium Trader"
+  initial_balance: 10000.00
+  subscription_type: "premium"
+  timezone: "Asia/Singapore"
+  currency: "SGD"
+
+demo_users:
+  demo:
+    email: "demo@sarasai.com"
+    name: "Demo User"
+    role: "Basic Trader"
+    initial_balance: 10000.00
+    subscription_type: "basic"
+    password: "demo123"  # Note: Should be hashed in production
+  
+  admin:
+    email: "admin@sarasai.com"
+    name: "Admin User"
+    role: "System Administrator"
+    initial_balance: 50000.00
+    subscription_type: "admin"
+    password: "admin123"  # Note: Should be hashed in production
+
+user_defaults:
+  initial_cash_balance: 10000.00
+  default_role: "Basic Trader"
+  default_subscription: "basic"
+  default_timezone: "Asia/Singapore"
+  default_currency: "SGD"
+  
+subscription_tiers:
+  basic:
+    name: "Basic Trader"
+    max_positions: 10
+    real_time_data: false
+    advanced_analytics: false
+    
+  premium:
+    name: "Premium Trader" 
+    max_positions: 100
+    real_time_data: true
+    advanced_analytics: true
+    
+  admin:
+    name: "System Administrator"
+    max_positions: -1  # Unlimited
+    real_time_data: true
+    advanced_analytics: true

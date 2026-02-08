@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Testing - Sarasai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9fafb;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s ease;
+        }
+        .test-button:hover {
+            background: #5a6fd8;
+        }
+        .status {
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .feature-list {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .feature-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 8px 0;
+        }
+        .check {
+            color: #10b981;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🦢 Sarasai UI Testing Dashboard</h1>
+    
+    <div class="test-section">
+        <h2>🚀 Quick Start Guide</h2>
+        <p>Test the enhanced UI features with beautiful tables and navigation:</p>
+        <a href="http://localhost:8000/app" class="test-button" target="_blank">
+            Open Sarasai App
+        </a>
+    </div>
+
+    <div class="test-section">
+        <h2>✨ Enhanced Features Implemented</h2>
+        <div class="feature-list">
+            <h3>📊 Beautiful Tables & UI</h3>
+            <ul>
+                <li><span class="check">✓</span> Enhanced Holdings Table with structured cells</li>
+                <li><span class="check">✓</span> Professional gradient headers and hover effects</li>
+                <li><span class="check">✓</span> Detailed P&L visualization with color coding</li>
+                <li><span class="check">✓</span> Interactive action buttons with icons</li>
+                <li><span class="check">✓</span> Table sorting functionality (click column headers)</li>
+            </ul>
+            
+            <h3>🏪 Market Tab Features</h3>
+            <ul>
+                <li><span class="check">✓</span> Market Indices table with real-time styling</li>
+                <li><span class="check">✓</span> Top Gainers & Losers tables</li>
+                <li><span class="check">✓</span> Sector Performance with trend indicators</li>
+                <li><span class="check">✓</span> Color-coded performance metrics</li>
+            </ul>
+            
+            <h3>📈 Reports Tab Features</h3>
+            <ul>
+                <li><span class="check">✓</span> Portfolio Performance reports</li>
+                <li><span class="check">✓</span> Monthly Analysis with win rate bars</li>
+                <li><span class="check">✓</span> Risk Assessment metrics</li>
+                <li><span class="check">✓</span> Status indicators and trend analysis</li>
+            </ul>
+            
+            <h3>🎨 Enhanced Navigation</h3>
+            <ul>
+                <li><span class="check">✓</span> 6-tab navigation with descriptions</li>
+                <li><span class="check">✓</span> Animated transitions and hover effects</li>
+                <li><span class="check">✓</span> Professional icon integration</li>
+                <li><span class="check">✓</span> Responsive mobile design</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 Manual Testing Steps</h2>
+        <ol>
+            <li>Click "Open Sarasai App" above to launch the application</li>
+            <li><strong>Navigation Test:</strong> Click each tab (Dashboard, Portfolio, Stocks, Market, Reports, Settings)</li>
+            <li><strong>Table Sorting Test:</strong> In Dashboard tab, click column headers to sort holdings table</li>
+            <li><strong>Add Holdings:</strong> Click "Add Holding" to test the modal functionality</li>
+            <li><strong>Stock Analysis:</strong> Go to Stocks tab, search for "AAPL" and click "Analyze"</li>
+            <li><strong>Market Data:</strong> Check Market tab for indices, gainers/losers, and sector performance</li>
+            <li><strong>Reports:</strong> View Reports tab for portfolio performance and risk metrics</li>
+            <li><strong>Mobile Test:</strong> Resize browser window to test responsive design</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Features to Test</h2>
+        <div class="feature-list">
+            <h3>Interactive Elements:</h3>
+            <ul>
+                <li>Table sorting (click any column header)</li>
+                <li>Hover effects on table rows and buttons</li>
+                <li>Modal dialogs for adding holdings</li>
+                <li>Tab switching with smooth transitions</li>
+                <li>Loading states and animations</li>
+                <li>Responsive design on different screen sizes</li>
+            </ul>
+            
+            <h3>Visual Enhancements:</h3>
+            <ul>
+                <li>Gradient headers and professional styling</li>
+                <li>Color-coded P&L (green for profit, red for loss)</li>
+                <li>Progress bars for win rates</li>
+                <li>Status indicators with icons</li>
+                <li>Smooth animations and transitions</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Direct Links</h2>
+        <a href="http://localhost:8000/" class="test-button" target="_blank">API Root</a>
+        <a href="http://localhost:8000/health" class="test-button" target="_blank">Health Check</a>
+        <a href="http://localhost:8000/stocks" class="test-button" target="_blank">Stocks API</a>
+        <a href="http://localhost:8000/app" class="test-button" target="_blank">Frontend App</a>
+    </div>
+
+    <div class="status success">
+        <strong>Status:</strong> All enhanced UI features implemented and ready for testing!
+        <br><strong>Next:</strong> Test the application and proceed with Phase 3 (Advanced Analytics)
+    </div>
+
+    <script>
+        // Simple status checker
+        fetch('http://localhost:8000/health')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API Status:', data);
+            })
+            .catch(error => {
+                console.error('API Error:', error);
+            });
+    </script>
+</body>
+</html>

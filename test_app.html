@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test App Initialization</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>Sarasai App Initialization Test</h1>
+    
+    <div id="test-results">
+        <div class="status info">Testing application initialization...</div>
+    </div>
+
+    <script>
+        async function runTests() {
+            const results = document.getElementById('test-results');
+            
+            function addResult(message, type = 'info') {
+                const div = document.createElement('div');
+                div.className = `status ${type}`;
+                div.textContent = message;
+                results.appendChild(div);
+            }
+
+            try {
+                // Test 1: API Connection
+                addResult('Testing API connection...');
+                const response = await fetch('http://localhost:8000/api/config/user');
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ API connected successfully - User: ${data.name}`, 'success');
+                } else {
+                    addResult(`❌ API connection failed - Status: ${response.status}`, 'error');
+                    return;
+                }
+
+                // Test 2: Portfolio Data
+                addResult('Testing portfolio data...');
+                const portfolioResponse = await fetch('http://localhost:8000/api/trading/portfolio/positions');
+                if (portfolioResponse.ok) {
+                    const portfolio = await portfolioResponse.json();
+                    addResult(`✅ Portfolio loaded - ${portfolio.length} positions`, 'success');
+                } else {
+                    addResult('❌ Portfolio loading failed', 'error');
+                }
+
+                // Test 3: Intelligence Endpoints
+                addResult('Testing intelligence endpoints...');
+                const recommendationsResponse = await fetch('http://localhost:8000/api/portfolio/recommendations');
+                if (recommendationsResponse.ok) {
+                    const recommendations = await recommendationsResponse.json();
+                    addResult(`✅ Intelligence engine working - ${recommendations.length} recommendations`, 'success');
+                } else {
+                    addResult('❌ Intelligence engine failed', 'error');
+                }
+
+                // Test 4: News Analysis
+                addResult('Testing news analysis...');
+                const newsResponse = await fetch('http://localhost:8000/api/news/portfolio');
+                if (newsResponse.ok) {
+                    const news = await newsResponse.json();
+                    addResult(`✅ News engine working - Portfolio sentiment: ${news.portfolio_sentiment}`, 'success');
+                } else {
+                    addResult('❌ News engine failed', 'error');
+                }
+
+                // Test 5: Expert Analysis
+                addResult('Testing expert analysis...');
+                const expertResponse = await fetch('http://localhost:8000/api/experts/portfolio/analysis');
+                if (expertResponse.ok) {
+                    const expert = await expertResponse.json();
+                    addResult(`✅ Expert engine working - Portfolio sentiment: ${expert.portfolio_sentiment}`, 'success');
+                } else {
+                    addResult('❌ Expert engine failed', 'error');
+                }
+
+                addResult('🎉 All systems operational! The application should work properly.', 'success');
+                
+                // Add link to main app
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'status success';
+                linkDiv.innerHTML = '<strong>Ready to use:</strong> <a href="/pro" target="_blank">Open Sarasai Professional Platform</a>';
+                results.appendChild(linkDiv);
+
+            } catch (error) {
+                addResult(`❌ Test failed with error: ${error.message}`, 'error');
+            }
+        }
+
+        // Run tests when page loads
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+# Sarasai UI Text Configuration
+# All user-facing text, labels, and messages
+
+navigation:
+  dashboard: "Dashboard"
+  portfolio: "Portfolio" 
+  watchlist: "Watchlist"
+  orders: "Orders"
+  discover: "Discover"
+  screener: "Stock Screener"
+  market: "Market News"
+  performance: "Performance"
+  risk: "Risk Analysis"
+  reports: "Reports"
+  settings: "Settings"
+
+sections:
+  trading: "Trading"
+  research: "Research" 
+  analysis: "Analysis"
+
+buttons:
+  add_position: "Add Position"
+  export_data: "Export Data"
+  buy: "Buy"
+  sell: "Sell"
+  filter: "Filter"
+  sort: "Sort"
+  save: "Save"
+  cancel: "Cancel"
+  delete: "Delete"
+  edit: "Edit"
+  view_all: "View All"
+
+placeholders:
+  search_stocks: "Search stocks, symbols, or companies..."
+  stock_symbol: "e.g., AAPL, GOOGL, MSFT"
+  number_of_shares: "100"
+  price_per_share: "150.00"
+
+labels:
+  total_portfolio_value: "Total Portfolio Value"
+  days_gain_loss: "Day's Gain/Loss"
+  total_gain_loss: "Total Gain/Loss"
+  cash_balance: "Cash Balance"
+  portfolio_positions: "Portfolio Positions"
+  asset_allocation: "Asset Allocation"
+  performance_chart: "Performance Chart"
+  market_overview: "Market Overview"
+  top_movers: "Top Movers"
+  recent_activity: "Recent Activity"
+
+messages:
+  loading: "Loading..."
+  no_data: "No data available"
+  error_loading: "Error loading data"
+  position_added: "Position added successfully"
+  order_placed: "Order placed successfully"
+  data_exported: "Data exported successfully"
+
+tooltips:
+  add_position: "Add a new stock position to your portfolio"
+  export_data: "Export your portfolio data to CSV"
+  market_status: "Current market trading status"
+  
+chart_periods:
+  "1D": "1 Day"
+  "1W": "1 Week" 
+  "1M": "1 Month"
+  "3M": "3 Months"
+  "1Y": "1 Year"
+  "ALL": "All Time"

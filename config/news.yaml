@@ -1,0 +1,147 @@
+# Sarasai News and Sentiment Configuration
+# News sources and keyword mapping for stock analysis
+
+sources:
+  - "reuters"
+  - "bloomberg" 
+  - "cnbc"
+  - "financial_times"
+  - "straits_times"
+  - "business_times"
+  - "economic_times"
+  - "hindu_business_line"
+
+# Keywords to search for each stock symbol
+symbol_keywords:
+  # Singapore Stocks
+  "DBS.SI":
+    - "DBS Bank"
+    - "DBS Group Holdings" 
+    - "Singapore banking"
+  "O39.SI":
+    - "OCBC Bank"
+    - "Oversea-Chinese Banking"
+    - "Singapore banks"
+  "U11.SI":
+    - "UOB"
+    - "United Overseas Bank"
+    - "Singapore financial"
+  "C6L.SI":
+    - "Singapore Airlines"
+    - "SIA"
+    - "aviation Singapore"
+  "S68.SI":
+    - "SGX"
+    - "Singapore Exchange"
+    - "Singapore stocks"
+  
+  # US Stocks
+  "AAPL":
+    - "Apple Inc"
+    - "iPhone"
+    - "Apple earnings"
+    - "Tim Cook"
+  "GOOGL":
+    - "Alphabet"
+    - "Google"
+    - "Alphabet earnings"
+    - "Sundar Pichai"
+  "MSFT":
+    - "Microsoft"
+    - "Microsoft earnings"
+    - "Satya Nadella"
+    - "Azure"
+  "TSLA":
+    - "Tesla"
+    - "Tesla earnings"
+    - "Elon Musk"
+    - "electric vehicles"
+  "NVDA":
+    - "NVIDIA"
+    - "NVIDIA earnings"
+    - "AI chips"
+    - "graphics cards"
+  
+  # Indian Stocks
+  "RELIANCE.NS":
+    - "Reliance Industries"
+    - "RIL"
+    - "Mukesh Ambani"
+    - "Jio"
+  "TCS.NS":
+    - "Tata Consultancy Services"
+    - "TCS"
+    - "Tata Group"
+    - "IT services India"
+  "HDFCBANK.NS":
+    - "HDFC Bank"
+    - "HDFC"
+    - "Indian banking"
+  "INFY.NS":
+    - "Infosys"
+    - "Infosys earnings"
+    - "Indian IT"
+  "ITC.NS":
+    - "ITC Limited"
+    - "ITC India"
+    - "consumer goods India"
+
+# News impact weights by category
+category_weights:
+  earnings: 0.9
+  regulation: 0.8
+  legal: 0.7
+  management_changes: 0.8
+  product_launches: 0.6
+  partnerships: 0.5
+  market_analysis: 0.4
+  industry_trends: 0.3
+  general: 0.2
+
+# Sentiment scoring parameters
+sentiment_config:
+  strong_positive_threshold: 0.6
+  weak_positive_threshold: 0.2
+  neutral_threshold: 0.1
+  weak_negative_threshold: -0.2
+  strong_negative_threshold: -0.6
+  
+# News freshness parameters
+freshness_config:
+  very_recent_hours: 6    # Breaking news impact
+  recent_days: 2          # High impact news
+  relevant_days: 7        # Standard news window
+  archive_days: 30        # Background context
+
+# Source credibility scores (0.0 to 1.0)
+source_credibility:
+  reuters: 0.95
+  bloomberg: 0.95
+  financial_times: 0.90
+  cnbc: 0.85
+  straits_times: 0.85
+  business_times: 0.85
+  economic_times: 0.80
+  hindu_business_line: 0.80
+  yahoo_finance: 0.70
+  marketwatch: 0.70
+  seeking_alpha: 0.60
+  default: 0.50
+
+# Market-specific news configurations
+market_news:
+  SGX:
+    primary_sources: ["straits_times", "business_times", "bloomberg"]
+    key_themes: ["singapore_economy", "banking", "reits", "government_policy"]
+  
+  NYSE:
+    primary_sources: ["reuters", "bloomberg", "cnbc", "financial_times"]
+    key_themes: ["us_economy", "fed_policy", "earnings", "technology"]
+  
+  NASDAQ:
+    primary_sources: ["reuters", "bloomberg", "cnbc"]
+    key_themes: ["technology", "innovation", "growth", "nasdaq_composite"]
+  
+  NSE:
+    primary_sources: ["economic_times", "hindu_business_line", "bloomberg"]
+    key_themes: ["indian_economy", "rbi_policy", "monsoon", "government_policy"]

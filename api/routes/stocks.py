@@ -17,6 +17,28 @@ router = APIRouter(prefix="/stocks", tags=["stocks"])
 
 # IMPORTANT: Specific routes BEFORE dynamic routes!
 
+@router.get("/search")
+def search_stocks(q: str):
+    """Search for stocks by symbol or name"""
+    query = q.lower()
+    symbols = stock_service.get_available_symbols()
+    
+    # Filter stocks based on query
+    results = []
+    for symbol in symbols[:50]:  # Limit to 50 for performance
+        stock_data = stock_service.get_stock_data(symbol)
+        if stock_data:
+            if (query in symbol.lower() or 
+                (hasattr(stock_data, 'name') and query in stock_data.name.lower())):
+                results.append({
+                    "symbol": symbol,
+                    "name": getattr(stock_data, 'name', f"{symbol} Inc."),
+                    "current_price": stock_data.current_price,
+                    "change_percent": getattr(stock_data, 'change_percent', 0.0)
+                })
+    
+    return results[:10]  # Return top 10 matches
+
 
 @router.get("/table", response_class=HTMLResponse)
 def stocks_table():

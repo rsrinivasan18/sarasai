@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarasai Professional - Trading Platform Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .platform-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .platform-btn {
+            background: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .platform-btn.professional {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.25rem 0;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .api-demo {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .api-demo h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .api-endpoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+
+        .endpoint {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+
+        .endpoint-method {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .endpoint-method.post {
+            background: #3b82f6;
+        }
+
+        .endpoint-url {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .endpoint-description {
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 3rem;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .checkmark {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .platform-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .api-endpoints {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="hero">
+            <h1>🦢 Sarasai Professional</h1>
+            <p>Enterprise-Grade Investment Platform with Real Trading Capabilities</p>
+            
+            <div class="platform-buttons">
+                <a href="http://localhost:8000/app" class="platform-btn">
+                    <span>📊</span>
+                    Basic Platform
+                </a>
+                <a href="http://localhost:8000/pro" class="platform-btn professional">
+                    <span>🚀</span>
+                    Professional Platform
+                </a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Trading Endpoints</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Real-time</span>
+                    <span class="stat-label">Portfolio Updates</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Pro</span>
+                    <span class="stat-label">Risk Analytics</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Responsive</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic Platform</th>
+                        <th>Professional Platform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Navigation</td>
+                        <td>Simple tabs</td>
+                        <td><span class="checkmark">✓</span> Professional sidebar with breadcrumbs</td>
+                    </tr>
+                    <tr>
+                        <td>Real-time Data</td>
+                        <td>Basic updates</td>
+                        <td><span class="checkmark">✓</span> Advanced real-time portfolio tracking</td>
+                    </tr>
+                    <tr>
+                        <td>Order Management</td>
+                        <td>Add holdings only</td>
+                        <td><span class="checkmark">✓</span> Full order management (Buy/Sell/Cancel)</td>
+                    </tr>
+                    <tr>
+                        <td>Portfolio Analytics</td>
+                        <td>Basic metrics</td>
+                        <td><span class="checkmark">✓</span> Advanced risk analysis & performance tracking</td>
+                    </tr>
+                    <tr>
+                        <td>Search & Discovery</td>
+                        <td>Simple search</td>
+                        <td><span class="checkmark">✓</span> Global search with suggestions</td>
+                    </tr>
+                    <tr>
+                        <td>Watchlist</td>
+                        <td>Not available</td>
+                        <td><span class="checkmark">✓</span> Advanced watchlist with price alerts</td>
+                    </tr>
+                    <tr>
+                        <td>Data Export</td>
+                        <td>Limited</td>
+                        <td><span class="checkmark">✓</span> Professional data export & reporting</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Real Trading Operations</h3>
+                <p class="feature-description">Professional-grade trading with real order management, position tracking, and portfolio analytics.</p>
+                <ul class="feature-list">
+                    <li>Market & Limit Orders</li>
+                    <li>Position Management</li>
+                    <li>Real-time Portfolio Updates</li>
+                    <li>Advanced Order Routing</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Advanced Analytics</h3>
+                <p class="feature-description">Comprehensive portfolio analysis with risk metrics, performance tracking, and detailed reporting.</p>
+                <ul class="feature-list">
+                    <li>Risk Assessment (VaR, Beta, Sharpe)</li>
+                    <li>Performance Attribution</li>
+                    <li>Sector Analysis</li>
+                    <li>Backtesting Engine</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">Smart Discovery</h3>
+                <p class="feature-description">Intelligent stock discovery with advanced screening, research tools, and market insights.</p>
+                <ul class="feature-list">
+                    <li>Global Search with Suggestions</li>
+                    <li>Advanced Stock Screener</li>
+                    <li>Real-time Market Data</li>
+                    <li>Research & Recommendations</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Professional UI/UX</h3>
+                <p class="feature-description">Enterprise-grade interface designed for professional traders and investment managers.</p>
+                <ul class="feature-list">
+                    <li>Sidebar Navigation with Routing</li>
+                    <li>Real-time Notifications</li>
+                    <li>Customizable Dashboards</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="api-demo">
+            <h3>🔗 Professional Trading API Endpoints</h3>
+            <div class="api-endpoints">
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/portfolio/positions</span>
+                    <div class="endpoint-description">Get all portfolio positions with real-time data</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/portfolio/metrics</span>
+                    <div class="endpoint-description">Portfolio summary metrics and performance data</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method post">POST</span>
+                    <span class="endpoint-url">/api/trading/orders</span>
+                    <div class="endpoint-description">Create new buy/sell orders with validation</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/watchlist</span>
+                    <div class="endpoint-description">Manage watchlist with price alerts</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/market/indices</span>
+                    <div class="endpoint-description">Real-time market indices and performance</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/analytics/risk</span>
+                    <div class="endpoint-description">Advanced portfolio risk analysis</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/analytics/performance</span>
+                    <div class="endpoint-description">Historical performance data for charts</div>
+                </div>
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/trading/realtime/updates</span>
+                    <div class="endpoint-description">Real-time price updates for positions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="api-demo">
+            <h3>🧪 Test the API Endpoints</h3>
+            <p style="margin-bottom: 1rem; color: #6b7280;">
+                Click the buttons below to test the live API endpoints and see real data responses:
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <button onclick="testAPI('/api/trading/portfolio/positions', 'positions')" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                    Test Portfolio Positions
+                </button>
+                <button onclick="testAPI('/api/trading/portfolio/metrics', 'metrics')" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                    Test Portfolio Metrics
+                </button>
+                <button onclick="testAPI('/api/trading/market/indices', 'indices')" style="background: #f59e0b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                    Test Market Indices
+                </button>
+                <button onclick="testAPI('/api/trading/analytics/risk', 'risk')" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                    Test Risk Analytics
+                </button>
+            </div>
+            <div id="api-results" style="margin-top: 1rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; max-height: 300px; overflow-y: auto; display: none;"></div>
+        </div>
+
+        <div class="footer">
+            <p>🚀 Built with FastAPI + Professional UI/UX Design</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Ready for production deployment with real trading integration</p>
+        </div>
+    </div>
+
+    <script>
+        async function testAPI(endpoint, type) {
+            const results = document.getElementById('api-results');
+            results.style.display = 'block';
+            results.textContent = `Testing ${endpoint}...\n`;
+
+            try {
+                const response = await fetch(`http://localhost:8000${endpoint}`);
+                const data = await response.json();
+                
+                results.textContent = `✅ ${endpoint}\n\n` + JSON.stringify(data, null, 2);
+                
+                // Add some analysis based on the endpoint
+                if (type === 'positions') {
+                    const totalValue = data.reduce((sum, pos) => sum + pos.market_value, 0);
+                    results.textContent += `\n\n📊 Analysis:\n- Total Positions: ${data.length}\n- Total Portfolio Value: $${totalValue.toLocaleString()}`;
+                } else if (type === 'metrics') {
+                    results.textContent += `\n\n📊 Analysis:\n- Total Value: $${data.total_value.toLocaleString()}\n- Total P&L: $${data.total_gain_loss.toLocaleString()}\n- Cash Balance: $${data.cash_balance.toLocaleString()}`;
+                }
+            } catch (error) {
+                results.textContent = `❌ Error testing ${endpoint}:\n${error.message}`;
+            }
+        }
+
+        // Auto-test the first endpoint on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testAPI('/api/trading/portfolio/positions', 'positions');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

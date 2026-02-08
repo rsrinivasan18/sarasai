@@ -1,0 +1,29 @@
+# Sarasai Branding Configuration
+# Contains all branding, company info, and project naming
+
+application:
+  name: "Sarasai"
+  full_name: "Sarasai - Professional Investment Platform"
+  tagline: "Where Wisdom Flows"
+  description: "Real-time Stock Analysis & Portfolio Management Platform"
+  version: "1.0.0"
+  logo_icon: "fas fa-chart-network"
+  favicon: "/static/favicon.ico"
+
+company:
+  name: "Sarasai Technologies"
+  founder: "Srinivasan Ramarao"
+  contact_email: "rsrinivasan18@gmail.com"
+  website: "https://sarasai.com"
+  support_email: "support@sarasai.com"
+  
+footer:
+  copyright: "© 2026 Sarasai Technologies"
+  powered_by: "Powered by Sarasai - Where Wisdom Flows"
+  privacy_policy: "/privacy"
+  terms_of_service: "/terms"
+
+social:
+  twitter: "@sarasai"
+  linkedin: "company/sarasai"
+  github: "sarasai/platform"

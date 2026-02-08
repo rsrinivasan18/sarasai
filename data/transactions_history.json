@@ -1,0 +1,38 @@
+{
+  "transactions": [
+    {
+      "id": "774b4f63-7473-426b-95f5-2eef381c478e",
+      "action": "BUY",
+      "symbol": "DBS.SI",
+      "shares": 100.0,
+      "price": 28.5,
+      "total_amount": 2850.0,
+      "currency": "SGD",
+      "timestamp": "2026-02-05T17:12:18.910627",
+      "position_id": "cdd1a483-a14b-4226-8d41-8f27c3f8c6ab"
+    },
+    {
+      "id": "e8897e54-ff8b-4127-9e73-ea2047c550a2",
+      "action": "BUY",
+      "symbol": "AAPL",
+      "shares": 50.0,
+      "price": 180.0,
+      "total_amount": 9000.0,
+      "currency": "USD",
+      "timestamp": "2026-02-05T21:49:26.476964",
+      "position_id": "309c43ff-706a-4c15-9d8c-c8942393e5a0"
+    },
+    {
+      "id": "47636091-f593-4df0-9c34-c0eeaa3b5ad8",
+      "action": "BUY",
+      "symbol": "TSLA",
+      "shares": 10.0,
+      "price": 200.0,
+      "total_amount": 2000.0,
+      "currency": "USD",
+      "timestamp": "2026-02-08T03:19:54.871036",
+      "position_id": "83ad8243-4890-4500-a9a5-b482d66b0e63"
+    }
+  ],
+  "created_at": "2026-02-05T17:11:42.260539"
+}
