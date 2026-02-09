@@ -11,11 +11,20 @@ from api.routes import stocks, portfolio, auth, trading
 from core.models import RootResponse, HealthResponse
 from core.services import stock_service
 from config.settings import settings
-from core.data_providers import ui_provider, user_provider
+from core.data_providers import ui_provider, user_provider, data_registry
 from core.enhanced_data_providers import register_enhanced_providers
+from core.database import init_db, get_db_info
+from core.db_providers import DatabaseUserDataProvider, DatabasePortfolioDataProvider
+
+# Initialize database
+init_db()
 
 # Register enhanced providers on startup
 register_enhanced_providers()
+
+# Register database providers
+data_registry.register_provider("user", DatabaseUserDataProvider())
+data_registry.register_provider("portfolio", DatabasePortfolioDataProvider())
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -120,9 +129,31 @@ def health_check():
     """Health check endpoint"""
     return HealthResponse(
         status="healthy",
-        data_source=f"{settings.DATA_SOURCE} (CSV)",
+        data_source=f"{settings.DATA_SOURCE} (Alpha Vantage + Database)",
         stocks_available=stock_service.get_available_symbols()
     )
+
+
+@app.get("/api/health/database")
+def database_health():
+    """Database health check endpoint"""
+    try:
+        db_info = get_db_info()
+        return {
+            "status": "healthy",
+            "database": db_info,
+            "providers": {
+                "user": "DatabaseUserDataProvider",
+                "portfolio": "DatabasePortfolioDataProvider" 
+            },
+            "message": "Database connection active"
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e),
+            "message": "Database connection failed"
+        }
 
 
 @app.get("/api/stocks/search")

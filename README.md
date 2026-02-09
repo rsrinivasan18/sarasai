@@ -23,21 +23,24 @@ the goddess of knowledge and wisdom.
 
 ## 📊 Status
 
-🚧 **Day 3** - Real-time market data integration complete
+🚧 **Week 2** - Database layer integration complete
 
 **Current Features:**
 - ✅ RESTful API with FastAPI
 - ✅ MVC architecture (Model-View-Controller)
 - ✅ Live market data via Alpha Vantage API
-- ✅ CSV fallback system for reliability
+- ✅ SQLite database with comprehensive schema
+- ✅ Database-backed portfolio management
+- ✅ CRUD operations for positions and transactions
 - ✅ Stock data endpoints with real-time prices
 - ✅ Auto-generated API documentation
 
 ## 🏗️ Tech Stack
 
 - **Backend:** Python 3.11, FastAPI
-- **Data:** Pandas, CSV (transitioning to PostgreSQL)
-- **Future:** LangChain, PostgreSQL, Redis
+- **Database:** SQLite (production ready for PostgreSQL)
+- **Data:** Alpha Vantage API, SQLAlchemy ORM
+- **Future:** PostgreSQL, Redis, LangChain
 
 ## 🚀 Quick Start
 ```bash
@@ -66,7 +69,7 @@ sarasai/
 - [x] Day 1: Project setup, first endpoints ✅
 - [x] Day 2: MVC architecture, CSV data integration ✅
 - [x] Day 3: Real API integration (Alpha Vantage) ✅
-- [ ] Week 2: PostgreSQL database
+- [x] Week 2: Database layer (SQLite + SQLAlchemy) ✅
 - [ ] Week 3: User authentication
 
 ---
